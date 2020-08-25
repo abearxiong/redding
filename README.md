@@ -1,5 +1,7 @@
 # reding
 
+remeber 自定义
+
 ## Project setup
 ```
 yarn install

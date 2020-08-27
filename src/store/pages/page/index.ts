@@ -63,7 +63,8 @@ const page = {
   },
   actions: {
     requestPages: async ({ commit, dispatch }: PageContext) => {
-      const page = await get("/pages.json");
+      const page = await get("/pages");
+      console.log("pages", page, typeof page)
       const pageArrObject: Array<any> = page.list;
       const pages = pageArrObject.map(item => new PageData().from(item));
       commit("setPages", pages);

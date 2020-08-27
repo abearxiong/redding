@@ -56,7 +56,8 @@ const block = {
   },
   actions: {
     requestBlocks: async ({ commit, dispatch, rootGetters }: PageContext) => {
-      const page = await get("/blocks.json");
+      const page = await get("/blocks");
+      console.log("block", page, typeof page);
       const pageArrObject: Array<any> = page.list;
       const { currentPageOpenid } = rootGetters.setting;
       let currentPageBlockOpenid = "";

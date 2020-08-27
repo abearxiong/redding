@@ -23,7 +23,7 @@
                         class="markdown-preview" 
                         ref="markdown-preview"  
                         v-html="html"
-                        :contenteditable="currentBlock?.setting.previewCanEdit"
+                        :contenteditable="currentBlock?.setting?.previewCanEdit??true"
                         @input="onChangeContent"
                         @click="onChangeLeft(false)"
                         @blur="onFinishRight"

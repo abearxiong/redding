@@ -30,7 +30,10 @@ body,html,#app{
   // text-align: center;
   color: #2c3e50;
 }
-
+.is-ok {
+  border: 1px dotted  red;
+  box-sizing: border-box;
+}
 // #nav {
 //   padding: 30px;
 

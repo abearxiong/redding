@@ -13,7 +13,7 @@
     <div class="setting sidebar-btn">设置</div> -->
     <div class="pages-index-title" @click="onShowNoteMsg">笔记本</div>
     <div class="pages-index">
-      <div class="pages-index-item sidebar-btn" v-for="item in pageIndex" :key="item.openid" :style="{'text-indent': 1*item.deep + 'rem'}" @click="toPage(item.openid)">
+      <div class="is-ok pages-index-item sidebar-btn" v-for="item in pageIndex" :key="item.openid" :style="{'text-indent': 1*item.deep + 'rem'}" @click="toPage(item.openid)">
         {{item.title}}
       </div>
       <div class="page-index-none" v-if="pageIndex.length==0" 

@@ -42,13 +42,13 @@
         <div @click="addBlock">添加小块</div>
         <div @click="onMsg">显示编辑</div>
         <div @click="onMsg">预览编辑</div>
-        <div @click="onShowMarkdown">全局编辑</div>
+        <div class="is-ok" @click="onShowMarkdown">全局编辑</div>
         <div @click="onMsg">查看源码</div>
         <div @click="onMsg">查看信息</div>
     </div>
     <div class="page-block-template-btn-group">
         <div @click="onMsg">临时存在</div>
-        <div @click="addBlock">添加内容</div>
+        <div class="is-ok"  @click="addBlock">添加内容</div>
         <div @click="onMsg">删除内容</div>
         <div @click="onMsg">添加页面</div>
         <div @click="onMsg">删除页面</div>

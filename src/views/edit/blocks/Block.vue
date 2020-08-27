@@ -2,6 +2,7 @@
   <div class="page-block" @click="toBlock(content.openid)">
     <textarea
       class="page-input"
+      wrap="off" autocorrect="off" autocapitalize="off" spellcheck="false"
       :value="text"
       @input="onChangeText"
       @focus="onChangeStart(1)"

@@ -192,7 +192,7 @@ const memory = () => {
 };
 const profile = (...params: any[]) => {
   if (window) {
-    let c: any = console;
+    const c: any = console;
     c.profile(...params);
     if (params.length === 0) {
       console.log("浏览器存在，管理CPU和profileEnd对应");
@@ -202,7 +202,7 @@ const profile = (...params: any[]) => {
 };
 const profileEnd = (...params: any[]) => {
   if (window) {
-    let c: any = console;
+    const c: any = console;
     c.profile(...params);
     if (params.length === 0) {
       console.log("浏览器存在，管理CPU和profile对应");
@@ -270,7 +270,10 @@ const consoleCmd = [
   "$2",
   "$3",
   "$4",
-  "$_"
+  "$_",
+  "encode",
+  "decode",
+  "escape",
 ];
 const chromeHelper = () => {
   const intro = `
@@ -285,6 +288,7 @@ const chromeHelper = () => {
     会在控制台输入函数名称及参数，unmonitor停止监听
     inspect(object/function)在适当的面板中打开并选择指定的元素或对象
     profile分析
+    escape 某些字符被替换成了十六进制的转义序列。
   `
   console.log(intro);
   console.log(...consoleCmd);
@@ -320,5 +324,6 @@ export const lg = {
 const w: any = window;
 if (window) {
   w.log = log;
+  w.clear = clear;
   w.logHelper = lg;
 }

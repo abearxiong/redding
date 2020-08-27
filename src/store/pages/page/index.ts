@@ -77,7 +77,6 @@ const page = {
         currentPage.value = "";
       }
       dispatch("setSetting", currentPage, { root: true });
-      //   dispatch("requestBlocks", null, { root: true });
     },
     deleteAllPages: ({ commit }: PageContext) => {
       commit("setPages");

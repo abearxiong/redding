@@ -15,5 +15,5 @@ import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
 //   }
 // })
 export default class Home extends Vue {}
-console.log("Hello", Options, HelloWorld);
+console.log("Hello HOME.vue", Options, HelloWorld);
 </script>

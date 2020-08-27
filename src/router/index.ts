@@ -53,5 +53,6 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes,
 });
-console.log("BASE_URL", BASE_URL)
+console.log("BASE_URL", BASE_URL, "BASE_URL", process.env.BASE_URL)
+console.log("env", process.env)
 export default router;

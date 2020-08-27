@@ -187,3 +187,12 @@ markdown 使用ace
 https://github.com/niksy/throttle-debounce
 
 关于markdown是否需要 同步滚动问题 https://github.com/siaikin/sync-scroll
+
+
+8/27 18:01 总结昨天思考的关于编程方式
+
+我当前的开发方式是串线，串一条运行线，那条线走不通，那么去找解决方案，解决后再继续走。
+
+我认为一个好的开发方式，总结所有的功能，在具体的页面当中具体的实现所具有的所有的功能。
+
+8/27 19:02 关于console.log的深层用法（以及打印内容字符串包含换行的方式） 

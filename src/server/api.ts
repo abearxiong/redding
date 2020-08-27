@@ -1,16 +1,29 @@
-import { fetchGet, fetchPost } from './fetch';
+import { fetchGet as fg, fetchPost as fp } from "./request/fetch";
+import { get as g, post as p } from "./request/axios";
+import store from "@/store";
+import { params } from "@/utils";
 
-const baseUrl = "http://wintoo.xiongxiao.me:3001";
+const baseUrl =
+  store?.getters?.setting?.currentBaseUrl ?? "http://localhost:8080/mock/api";
 const bu = baseUrl;
 
+const get = async (url: string, data: any = undefined, requestWay = 1) => {
+  url = bu + url;
+  if (data != undefined) {
+    url = url + "?" + params(data);
+  }
+  if (requestWay === 1) {
+    return await g(url).then((res) => res.data);
+  } else {
+    return await fg(url);
+  }
+};
+const post = async (url: string, data: any, requestWay = 1) => {
+  if (requestWay === 1) {
+    return await p(url, data).then((res) => res.data);
+  } else {
+    return await fp(url, data);
+  }
+};
 
-export const getWeb = (name: string="") => {
-    let url = name === ""? `${bu}/api/web`: `${bu}/api/${name}/web`;
-    return fetchGet(url);
-}
-
-
-export const postWeb = ( data: object, name: string="") => {
-    let url = name === ""? `${bu}/api/web`: `${bu}/api/${name}/web`;
-    return fetchPost(url, data);
-}
+export { get, post };

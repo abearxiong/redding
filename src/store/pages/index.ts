@@ -1,26 +1,35 @@
 /** 页面的内容
- * 
+ *
  */
-import { block } from './block';
-import { comment } from './comment';
-import { page } from './page';
+import { block } from "./block";
+import { comment } from "./comment";
+import { page } from "./page";
+
+import { PageState } from "./types";
+
+const pageState: PageState = {
+  pages: [],
+  blocks: [],
+  comment: []
+};
 
 const pages = {
-    state: {
-        pages: [],
-        block: [],
-        comment: [],
-    },
-    getters: {
-        getPages(state: any) {
-            return state.pages;
-        },
-        getPagesCount(state: any) {
-            return state.pages.length;
-        }
-    }
-}
+  state: pageState,
+  getters: {
+    ...page.getters,
+    ...block.getters,
+    ...comment.getters
+  },
+  mutations: {
+    ...page.mutations,
+    ...block.mutations,
+    ...comment.mutations
+  },
+  actions: {
+    ...page.actions,
+    ...block.actions,
+    ...comment.actions
+  }
+};
 
-export {
-    pages
-}
+export { pages };

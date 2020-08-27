@@ -1,6 +1,9 @@
 const getTimestamp = () => {
   return new Date().getTime();
 };
+const logTime = (v:any="hh") => {
+  console.log(v, new Date().toLocaleString())
+}
 /**
  *对Date的扩展，将 Date 转化为指定格式的String
  *月(M)、日(d)、小时(h)、分(m)、秒(s)、季度(q) 可以用 1-2 个占位符，
@@ -9,10 +12,8 @@ const getTimestamp = () => {
  *(new Date()).Format("yyyy-MM-dd hh:mm:ss.S") ==> 2020-07-02 08:09:04.423
  *(new Date()).Format("yyyy-M-d h:m:s.S")      ==> 2020-7-2 8:9:4.18
  */
-const getDateFormat = (datetime: Date|number,fmt="yy/mm/dd HH:MM:SS") => {
-  const date: Date = new Date(datetime);
+const getDateFormat = (date: Date , fmt = "yy/mm/dd HH:MM:SS") => {
   let ret;
-  // eslint-disable-next-line
   const opt: any = {
     "Y+": date.getFullYear().toString(), // 年
     "y+": date.getFullYear().toString(), // 年
@@ -20,7 +21,7 @@ const getDateFormat = (datetime: Date|number,fmt="yy/mm/dd HH:MM:SS") => {
     "d+": date.getDate().toString(), // 日
     "H+": date.getHours().toString(), // 时
     "M+": date.getMinutes().toString(), // 分
-    "S+": date.getSeconds().toString(), // 秒
+    "S+": date.getSeconds().toString() // 秒
     // 有其他格式化字符需求可以继续添加，必须转化成字符串
   };
   for (const k in opt) {
@@ -35,4 +36,4 @@ const getDateFormat = (datetime: Date|number,fmt="yy/mm/dd HH:MM:SS") => {
   return fmt;
 };
 const df = getDateFormat;
-export { getTimestamp, getDateFormat, df};
+export { getTimestamp, getDateFormat, df };

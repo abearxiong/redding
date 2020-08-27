@@ -1,5 +1,5 @@
 <template>
-  <div :class="{'tip':true, 'tip-hide': !isShowMsg}">
+  <div :class="{ tip: true, 'tip-hide': !isShowMsg }">
     <div class="header">
       卡片面板
       <span style="margin-left: 280px;">
@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     onCloseMsg() {
-      console.log("hidden")
+      console.log("hidden");
       this.isShowMsg = !this.isShowMsg;
     }
   }

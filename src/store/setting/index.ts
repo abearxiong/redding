@@ -5,29 +5,49 @@
  * 功能留存
  */
 
+import { SettingState, ShowMsg, ContextSet } from "./types";
+
+const setingState: SettingState = {
+  isShow: {},
+  currentPageOpenid: "",
+  currentPageBlockOpenid: "",
+  currentBaseUrl: "http://localhost:8080/mock/api",
+  currentSyncWeb: {on: true, isOnline: true},
+  showMsg: {
+    on: false,
+    title: "",
+    body: "",
+  }
+}
 const setting = {
-    state: {
-      isShow: {},
-      currentPage: "openid",
-      currentPageBlock: "openid",
+  state: setingState,
+  getters: {
+    currentBaseUrl: (state: any) => {
+      return state.currentBaseUrl ?? "";
     },
-    getters: {
-      COUNT2: (state: any) => {
-        return state.count2
+    currentSetting: (state: any) => (setting: string) => state[setting] ?? "",
+    setting: (state: any) => state,
+    showMsg: (state: any) => state.showMsg,
+  },
+  mutations: {
+    setSetting(state: any, payload: any) {
+      const { name, value } = payload;
+      if (name) {
+        state[name] = value ?? "";
       }
     },
-    mutations: {
-      ti(state: any, n: number) {
-        if(n){
-          state.count2 = state.count2+n;
-        }else{
-          state.count2++
-        }
-      }
+    setShowMsg: (state: SettingState, payload: ShowMsg) => {
+      state.showMsg == payload??{on:false}
+    }
+  },
+  actions: {
+    setSetting(context: any, payload: any) {
+      context.commit("setSetting", payload);
     },
-    actions: {
-      ti(context: any, payload: any){
-        context.commit('ti', payload)
-      }
+    setShowMsg({ commit }: ContextSet, payload: ShowMsg) {
+      commit("setShowMsg", payload)
     }
   }
+};
+
+export { setting };

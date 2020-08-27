@@ -152,7 +152,7 @@ npm install hotkeys-js
 
 用来修改绑定自定义的热键
 
-20/08/26 23：17 关于store存储
+20/08/25 23：17 关于store存储
 
 函数插件类，getter，actions，mutations, state活用
 
@@ -160,3 +160,30 @@ getter 存放一些介绍的函数，和函数的利用，内函数,state修改
 
 把重要的函数通过store存储，并根据其他思路进行设置其他插件方案
 
+20/08/26 01:15 关于page存储方案
+
+01：55 把之前json编辑的源码静态页面放在github上，发现github中出现http的请求被拦截的问题
+
+nginx配置https方法
+
+20/08/26 09:17 关于配置https
+
+关于note绑定位置
+
+sidebar绑定page索引，content绑定block内容
+
+pages的请求
+
+12:05 编码格式eslint，prettierrc
+
+19:10 数据绑定
+
+侧边栏和内容页面的数据绑定
+
+markdown 使用ace
+
+20/08/27 08:29 看到throttle-debounce， 当搜索功能的的使用需要用到
+
+https://github.com/niksy/throttle-debounce
+
+关于markdown是否需要 同步滚动问题 https://github.com/siaikin/sync-scroll

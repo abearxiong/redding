@@ -44,7 +44,16 @@ const testModules2 = {
   actions: {
     ti(context: any, payload: any){
       context.commit('ti', payload)
-    }
+    },
+    // 子模块的时候出现设置
+    // requestPages:{
+    //     root: true,
+    //     handler: async({ commit }:any) => {
+    //         const v = get("/pages.json");
+    //         console.log(v);
+    //     }
+    // },
+
   }
 }
 export {

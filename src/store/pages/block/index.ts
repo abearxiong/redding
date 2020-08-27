@@ -6,8 +6,7 @@ import { PageState, PagesData, PageContext } from './../types';
  */
 import { PageDataInterface, PageData, Pair } from "../types";
 import { get, post } from "@/server";
-// import { Getter } from "vuex";
-
+import { Blocks as PagesExample} from "@/expample";
 const block = {
   state: {
     blocks: []
@@ -56,7 +55,8 @@ const block = {
   },
   actions: {
     requestBlocks: async ({ commit, dispatch, rootGetters }: PageContext) => {
-      const page = await get("/blocks");
+      //const page = await get("/blocks"); // 请求在模板文件内消失
+      const page = PagesExample;
       console.log("block", page, typeof page);
       const pageArrObject: Array<any> = page.list;
       const { currentPageOpenid } = rootGetters.setting;

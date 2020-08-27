@@ -13,6 +13,7 @@ import {
 } from "../types";
 import { get, post } from "@/server";
 import { StoreState } from "@/store/types";
+import { Pages as PagesExample } from "@/expample";
 
 const page = {
   state: {
@@ -63,7 +64,8 @@ const page = {
   },
   actions: {
     requestPages: async ({ commit, dispatch }: PageContext) => {
-      const page = await get("/pages");
+      // const page = await get("/pages"); // 请求在模板文件内消失
+      const page = PagesExample;
       console.log("pages", page, typeof page)
       const pageArrObject: Array<any> = page.list;
       const pages = pageArrObject.map(item => new PageData().from(item));

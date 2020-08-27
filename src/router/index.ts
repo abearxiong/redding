@@ -25,11 +25,20 @@ const routes: Array<RouteRecordRaw> = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
   },
+  {
+    // 会匹配所有路径
+    path: '/*',
+    component: Edit
+  }
 ];
 
+let BASE_URL = process.env.BASE_URL
+if (BASE_URL===""){
+  BASE_URL = "/redding/";
+}
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(BASE_URL),
   routes,
 });
-
+console.log("BASE_URL", BASE_URL)
 export default router;

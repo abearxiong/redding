@@ -196,3 +196,8 @@ https://github.com/niksy/throttle-debounce
 我认为一个好的开发方式，总结所有的功能，在具体的页面当中具体的实现所具有的所有的功能。
 
 8/27 19:02 关于console.log的深层用法（以及打印内容字符串包含换行的方式） 
+
+20/08/28 07：30 typescript 活用interface, 类声明
+
+因此当前任务主要是编写typescript的声明，重构数据模型，和store模块
+

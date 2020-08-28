@@ -191,23 +191,17 @@ const memory = () => {
   console.log("内存为", console.memory);
 };
 const profile = (...params: any[]) => {
-  if (window) {
-    const c: any = console;
-    c.profile(...params);
+    console.profile(...params);
     if (params.length === 0) {
       console.log("浏览器存在，管理CPU和profileEnd对应");
       console.log("为程序调优，firefox中profile看到");
     }
-  }
 };
 const profileEnd = (...params: any[]) => {
-  if (window) {
-    const c: any = console;
-    c.profile(...params);
+    console.profileEnd(...params);
     if (params.length === 0) {
       console.log("浏览器存在，管理CPU和profile对应");
     }
-  }
 };
 const table = (...params: any[]) => {
   console.table(...params);
@@ -321,9 +315,9 @@ export const lg = {
   warn,
   chromeHelper
 };
-const w: any = window;
+
 if (window) {
-  w.log = log;
-  w.clear = clear;
-  w.logHelper = lg;
+  window.log = log;
+  window.clear = clear;
+  window.logHelper = lg;
 }

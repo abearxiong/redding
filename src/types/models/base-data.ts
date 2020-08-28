@@ -1,3 +1,11 @@
+/*
+ * @Author: xion
+ * @Date: 2020-08-28 08:53:49
+ * @LastEditors: xion
+ * @LastEditTime: 2020-08-28 21:26:57
+ * @FilePath: \reding\src\types\models\base-data.ts
+ * @Description: 真是太开心了
+ */
 /// 数据基础节点模型
 /// 
 /// guide是相同类别
@@ -15,13 +23,14 @@ interface IBaseData {
     // 基础节点的值
     value: any,
 }
-abstract class BaseData implements IBaseData{
+
+abstract class BaseData<T> implements IBaseData{
     public deep: number;
     public guide: number;
     public hasNext: boolean;
     public openid?: string;
     public parent: string | number;
-    public value: any;
+    public value: T;
     public constructor({deep,guide, hasNext,openid,parent,value}:IBaseData) {
         this.deep = deep;
         this.guide = guide;
@@ -30,9 +39,9 @@ abstract class BaseData implements IBaseData{
         this.parent = parent;
         this.value = value;
     }
-    public abstract copy():BaseData;
-    public abstract from():BaseData;
-    public abstract to():BaseData;
+    public abstract copyFrom():BaseData<T>;
+    public abstract from(BaseData<T>):BaseData<T>;
+    public abstract toJson():BaseData;
     public abstract toString():string;
     public abstract update():BaseData;
 }

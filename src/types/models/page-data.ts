@@ -2,7 +2,7 @@
  * @Author: xion
  * @Date: 2020-08-28 09:26:42
  * @LastEditors: xion
- * @LastEditTime: 2020-08-28 16:34:25
+ * @LastEditTime: 2020-08-28 21:41:12
  * @FilePath: \reding\src\types\models\page-data.ts
  * @Description: 真是太开心了
  */
@@ -41,7 +41,7 @@ enum DataStatus {
  * 为服务器内容
  * 
  */
-interface IPageData extends IBaseData{
+interface INoteData extends IBaseData{
     // 数据的大类别
     category: DataCategory,
     // 数据创建时间
@@ -64,7 +64,7 @@ interface IPageData extends IBaseData{
     updated: number,
 }
 
-abstract class PageData extends BaseData implements IPageData{
+abstract class NoteData extends BaseData implements INoteData{
     category: DataCategory;
     created: number;
     hash: string;
@@ -75,9 +75,9 @@ abstract class PageData extends BaseData implements IPageData{
     title: string;
     type: DataType;
     updated: number;
-    public constructor(pageData: IPageData){
-        super(pageData)
-        const { category, hash, keys, setting, status,tags, title, type} = pageData;
+    public constructor(NoteData: INoteData){
+        super(NoteData)
+        const { category, hash, keys, setting, status,tags, title, type} = NoteData;
         this.category = category??"";
         this.created = getTimestamp();
         this.hash = hash??"";
@@ -89,6 +89,5 @@ abstract class PageData extends BaseData implements IPageData{
         this.type = type;
         this.updated = getTimestamp();
     }
-
     public abstract setHash():void;
 }

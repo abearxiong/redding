@@ -153,7 +153,5 @@ class PageData implements PageDataInterface {
   }
 }
 
-// type PageDatas = {
-//   [index: number]: PageDataInterface;
-// }
+
 export { PageData};

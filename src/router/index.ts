@@ -5,12 +5,12 @@ import Edit from "../views/Edit.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: "/",
+    path: "/edit",
     name: "Edit",
     component: Edit,
   },
   {
-    path: "/home",
+    path: "/",
     name: "Home",
     // route level code-splitting
     // this generates a separate chunk (home.[hash].js) for this route
@@ -31,28 +31,17 @@ const routes: Array<RouteRecordRaw> = [
     path: '/*',
     component: Edit
   },
-  {
-    // 会匹配所有路径
-    path: '/redding',
-    component: Edit
-  },
-  {
-    // 会匹配所有路径
-    path: '/docs',
-    component: Edit
-  }
 ];
 
 let BASE_URL = process.env.BASE_URL
 if (BASE_URL===""){
-  // BASE_URL = "/redding/";
-  BASE_URL = "/docs/";
+  BASE_URL = "/redding/";
 }
 const router = createRouter({
   // history: createWebHistory(BASE_URL),
   history: createWebHashHistory(),
   routes,
 });
-console.log("BASE_URL", BASE_URL, "BASE_URL", process.env.BASE_URL)
-console.log("env", process.env)
+// console.log("BASE_URL", BASE_URL, "BASE_URL", process.env.BASE_URL)
+// console.log("env", process.env)
 export default router;

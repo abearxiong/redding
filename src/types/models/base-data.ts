@@ -2,7 +2,7 @@
  * @Author: xion
  * @Date: 2020-08-28 08:53:49
  * @LastEditors: xion
- * @LastEditTime: 2020-08-28 21:26:57
+ * @LastEditTime: 2020-08-29 00:51:25
  * @FilePath: \reding\src\types\models\base-data.ts
  * @Description: 真是太开心了
  */
@@ -24,24 +24,26 @@ interface IBaseData {
     value: any,
 }
 
-abstract class BaseData<T> implements IBaseData{
+abstract class BaseData<V> implements IBaseData{
     public deep: number;
     public guide: number;
     public hasNext: boolean;
     public openid?: string;
     public parent: string | number;
-    public value: T;
+    public value: V;
     public constructor({deep,guide, hasNext,openid,parent,value}:IBaseData) {
-        this.deep = deep;
-        this.guide = guide;
-        this.hasNext = hasNext;
-        this.openid = openid;
-        this.parent = parent;
+        this.deep = deep??0;
+        this.guide = guide??0;
+        this.hasNext = hasNext??false;
+        this.openid = openid??"";
+        this.parent = parent??"";
         this.value = value;
     }
-    public abstract copyFrom():BaseData<T>;
-    public abstract from(BaseData<T>):BaseData<T>;
-    public abstract toJson():BaseData;
+    public abstract copy():any;
+    // 转JSON的数据
+    public abstract toJson():any;
+    // 获取他字符串
     public abstract toString():string;
-    public abstract update():BaseData;
+    // 更新当前对象
+    public abstract update(data: any):this;
 }

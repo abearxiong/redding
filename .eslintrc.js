@@ -1,3 +1,11 @@
+/*
+ * @Author: xion
+ * @Date: 2020-08-23 00:18:55
+ * @LastEditors: xion
+ * @LastEditTime: 2020-08-29 18:02:53
+ * @FilePath: \reding\.eslintrc.js
+ * @Description: 真是太开心了
+ */
 module.exports = {
   root: true,
   env: {
@@ -18,6 +26,7 @@ module.exports = {
     "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
     "@typescript-eslint/no-unused-vars": "off", // no use变量
     "@typescript-eslint/no-explicit-any": "off", // 可以配置any,
+    "@typescript-eslint/no-inferrable-types": "off", // 推断也可以
     // "prettier/prettier": "off", //"error"
     // 关闭冲突规则
     "prettier/prettier": [

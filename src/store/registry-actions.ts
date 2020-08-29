@@ -2,7 +2,7 @@
  * @Author: xion
  * @Date: 2020-08-29 08:17:32
  * @LastEditors: xion
- * @LastEditTime: 2020-08-29 13:54:40
+ * @LastEditTime: 2020-08-29 17:48:48
  * @FilePath: \reding\src\store\registry-actions.ts
  * @Description: 真是太开心了
  */
@@ -42,12 +42,15 @@ class AcionFunction implements ActionFun{
     title: string;
     status: HotkeyStatus;
     constructor({custom, func,introduce,keys,name,options,params,preventDefault,title,status}:ActionFun){
+        // todo 
         this.custom = custom??false;
         this.func = func??"";
-        this.introduce = introduce??"介绍",
-        this.keys = keys??"",
-        this.name = name??"",
-        this.options = 
+        this.introduce = introduce??"介绍";
+        this.keys = keys??"";
+        this.name = name??"";
+        this.options = options;
+        this.title = title;
+        this.status = status;
     }
 }
 // 自定义函数举例

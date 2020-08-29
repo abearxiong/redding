@@ -2,15 +2,13 @@
  * @Author: xion
  * @Date: 2020-08-29 08:17:32
  * @LastEditors: xion
- * @LastEditTime: 2020-08-29 10:03:44
+ * @LastEditTime: 2020-08-29 13:54:40
  * @FilePath: \reding\src\store\registry-actions.ts
  * @Description: 真是太开心了
  */
 import hotkeys from "hotkeys-js";
 import { Store } from 'vuex';
-const registerActionsFun  = () =>{
 
-}
 export enum HotkeyStatus {
     NoKey,
     CanBind,
@@ -18,6 +16,42 @@ export enum HotkeyStatus {
 }
 export type ActionFun = IActionsFun<HotkeyStatus>
 
+class HotkeysOptions implements IHotkeysOptions{
+    scope: string;
+    element?: HTMLElement;
+    keyup?: boolean;
+    keydown?: boolean;
+    splitKey?: string;
+    constructor({scope,element,keyup,keydown,splitKey}:HotkeysOptions={scope:"all"}){
+        this.scope=scope??"all";
+        this.element=element??undefined;
+        this.keyup = keyup??false;
+        this.keyup = keydown !== undefined ? keydown : true;
+        this.splitKey = splitKey??"+"
+    }
+}
+class AcionFunction implements ActionFun{
+    custom = false;
+    func: string;
+    introduce: string;
+    keys: string;
+    name: string;
+    options: IHotkeysOptions;
+    params: any;
+    preventDefault?: boolean;
+    title: string;
+    status: HotkeyStatus;
+    constructor({custom, func,introduce,keys,name,options,params,preventDefault,title,status}:ActionFun){
+        this.custom = custom??false;
+        this.func = func??"";
+        this.introduce = introduce??"介绍",
+        this.keys = keys??"",
+        this.name = name??"",
+        this.options = 
+    }
+}
+// 自定义函数举例
+// new Funcition("params","return params");
 const registerActions = (store: Store<any>, actions: IActionsFun<HotkeyStatus>[]) => {
     const hotkeysSetting = actions.map((item)=>{
         if(item.status === HotkeyStatus.Bind){

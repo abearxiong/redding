@@ -230,3 +230,35 @@ teambition具有的开发平台正是我想去实现的一个点，其中的应�
 
 
 声明文件不能有导出的内容
+
+
+20/08/29 05：52 关于浏览器监听
+
+记录： 在tsconfig.json配置paths,然后可以实现不全局引入接口定义
+```
+ "*": ["types/*"]
+```
+
+热键管理hotkey-s
+
+20/08/29 07:25 hotkeys和actions关联起来
+ctrl + a ==> show help
+
+虚拟键盘，按键显示
+
+待会做
+
+```js
+// Encrypt
+var ciphertext = CryptoJS.AES.encrypt('my message', 'secret key 123').toString();
+
+// Decrypt
+var bytes  = CryptoJS.AES.decrypt(ciphertext, 'secret key 123');
+var originalText = bytes.toString(CryptoJS.enc.Utf8);
+
+console.log(originalText); // 'my message'
+```
+
+待做 关于可以拖动的窗口 frame窗口
+
+20/08/29 08：13 关于动态引入组件问题

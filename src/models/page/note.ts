@@ -2,7 +2,7 @@
  * @Author: xion
  * @Date: 2020-08-28 22:41:57
  * @LastEditors: xion
- * @LastEditTime: 2020-08-29 01:14:15
+ * @LastEditTime: 2020-08-29 05:53:26
  * @FilePath: \reding\src\models\page\note.ts
  * @Description: 真是太开心了
  */
@@ -10,7 +10,7 @@ import { getTimestamp } from '@/utils';
 import { getHash } from '@/utils';
 
 export enum NoteCategory {
-    Page,
+    Page=0,
     Block,
     Comment
 }
@@ -18,18 +18,26 @@ export enum NoteCategory {
  * 笔记保存，更新状态
  */
 export enum NoteStatus {
+    Working=10,
     Save,
     Offline,
     Changing,
+    Deleting,
 }
 export enum NoteType {}
-export enum PageType {}
+export enum PageType {
+    Page = 100,
+    CodeFile
+}
 /**
  * Block
  * DataType
  */
 export enum BlockType {
     // Api,
+    // Attach是附件
+    // 通过名字进行
+    // 判断附件类别
     Attach = 200,
     Audio,
     Bookmark,
@@ -45,8 +53,10 @@ export enum BlockType {
 }
 
 export enum CommentType {
-    Markdown=300,
-    Text
+    // Comment关联 Page
+    Page=300,
+    Block,
+    Comment
 }
 
 type INote = Note<any, NoteType, NoteCategory, NoteStatus>

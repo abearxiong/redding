@@ -316,8 +316,31 @@ export const lg = {
   chromeHelper
 };
 
-if (window) {
-  window.log = log;
-  window.clear = clear;
-  window.logHelper = lg;
+
+export {
+  assert,
+  clear,
+  context,
+  count,
+  countReset,
+  debug,
+  dir,
+  dirxml,
+  error,
+  group,
+  groupCollapsed,
+  groupEnd,
+  info,
+  log,
+  memory,
+  profile,
+  profileEnd,
+  table,
+  time,
+  timeEnd,
+  timeLog,
+  timeStamp,
+  trace,
+  warn,
+  chromeHelper
 }

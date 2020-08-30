@@ -2,55 +2,47 @@
  * @Author: xion
  * @Date: 2020-08-23 00:18:55
  * @LastEditors: xion
- * @LastEditTime: 2020-08-29 14:47:41
- * @FilePath: \reding\src\main.ts
+ * @LastEditTime: 2020-08-30 19:19:02
+ * @FilePath: \redding\src\main.ts
  * @Description: 真是太开心了
  */
 import { createApp } from "vue";
+import * as Vue from "vue";
+import { mapGetters, mapActions, mapMutations, mapState} from "vuex";
 import App from "./App.vue";
 // import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
-// import ElementUI from 'element-ui';
 import "element-ui/lib/theme-chalk/index.css";
 import "@/assets/iconfont.css";
-import hotkeys from 'hotkeys-js';
 
-createApp(App)
+import { lg } from "@/utils";
+
+const app = createApp(App)
   .use(store)
-  .use(router)
-  .mount("#app");
+  .use(router);
 
-// hotkeys('ctrl+a,alt+a+s', {keyup: true}, function(event, handler) {
-//   if (event.type === 'keydown') {
-//     console.log('keydown:', event.type, handler, handler.key);
-//   }
+app.mount("#app");
 
-//   if (event.type === 'keyup') {
-//     console.log('keyup:', event.type, handler, handler.key);
-//   }
-// });
-// hotkeys('command+ctrl+shift+a,f', function(event){
-//   console.log('c=', hotkeys.getPressedKeyCodes()); //=> [17, 65] or [70]
-//   event.preventDefault()
-// })
-// hotkeys('*', function(){
-//   console.log("key=:", hotkeys.getPressedKeyCodes());
-//   // event.preventDefault()
-// })
-// hotkeys('F1,command, ctrl+shift+q,ctrl+r', function(event, handler) {
-//   console.log("help", handler.key)
-//   event.preventDefault()
-// })
-// hotkeys('ctrl+k,ctrl+s', function(event) {
-//   console.log("ctrl+k")
-//   event.preventDefault()
-// })
-// hotkeys.filter(function(e:any):any { console.log('e',e); return true; });
-// hotkeys('o, enter', {
-//   scope: 'all',
-//   element: document.getElementById('wrapper'),
-// }, function(event, handler){ 
-  
-//   console.log('do something else', event, handler);
-// });
+const map = (v:any, done:any) => {
+  const funcs = {...done(v)};
+  for(const i in funcs) {
+    funcs[i] = funcs[i].bind(app);
+  }
+  return funcs;
+}
+if (window) {
+  window.log = lg.log;
+  window.clear = lg.clear;
+  window.logHelper = lg;
+  window.store = store;
+  window.smap = {
+    getters: (v:string[]) => map(v, mapGetters),
+    actions: (v:string[]) => map(v, mapActions),
+    mutions: (v:string[]) => map(v, mapMutations),
+    state: (v:string[]) => map(v, mapState),
+  }
+  window.Vue = Vue;
+  window.app = app;
+}
+

@@ -2,8 +2,8 @@
  * @Author: xion
  * @Date: 2020-08-28 08:10:04
  * @LastEditors: xion
- * @LastEditTime: 2020-08-29 07:50:26
- * @FilePath: \reding\src\@types\definition.d.ts
+ * @LastEditTime: 2020-08-30 18:28:02
+ * @FilePath: \redding\src\@types\definition.d.ts
  * @Description: 真是太开心了
  */
 // definition.d.ts
@@ -15,6 +15,10 @@ interface Window {
     log: any,
     clear: any,
     logHelper: any,
+    store?: any,
+    smap?: any,
+    Vue?: any,
+    app?: any
 }
 
 interface Console {

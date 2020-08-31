@@ -6,11 +6,7 @@
  * @FilePath: \reding\src\types\models\pair.ts
  * @Description: 真是太开心了
  */
-interface IPair {
+interface Pair {
     name: string;
     value: string;
-}
-
-interface Ift {
-    b: string;
 }

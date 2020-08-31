@@ -2,7 +2,7 @@
  * @Author: xion
  * @Date: 2020-08-28 08:10:04
  * @LastEditors: xion
- * @LastEditTime: 2020-08-30 18:28:02
+ * @LastEditTime: 2020-08-31 16:39:36
  * @FilePath: \redding\src\@types\definition.d.ts
  * @Description: 真是太开心了
  */
@@ -24,4 +24,7 @@ interface Window {
 interface Console {
     profile(label?: string): void;
     profileEnd(label?: string): void;
+}
+interface log {
+    
 }

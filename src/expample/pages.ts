@@ -1,3 +1,11 @@
+/*
+ * @Author: xion
+ * @Date: 2020-08-27 16:43:28
+ * @LastEditors: xion
+ * @LastEditTime: 2020-08-31 14:26:32
+ * @FilePath: \redding\src\expample\pages.ts
+ * @Description: 真是太开心了
+ */
 export default {
     "list":[
         {
@@ -10,6 +18,5 @@ export default {
             "title": "开发计划",
             "deep": 1
         }
-
     ]
 }

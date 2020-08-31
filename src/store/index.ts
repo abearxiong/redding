@@ -2,20 +2,23 @@
  * @Author: xion
  * @Date: 2020-08-23 00:18:55
  * @LastEditors: xion
- * @LastEditTime: 2020-08-30 17:14:38
+ * @LastEditTime: 2020-08-31 22:02:56
  * @FilePath: \redding\src\store\index.ts
  * @Description: 真是太开心了
  */
 import { createStore } from "vuex";
+import { registerModule } from "./register";
+// import { style } from "./style";
+// import { command } from "./command";
+// import { setting } from "./userinfo";
+import { notes } from "./notes";
 
-import { style } from "./style";
-import { command } from "./command";
-import { setting } from "./userinfo";
-import { pages } from "./pages";
+import { DefaultValue } from "./default-value";
 
-const storeState: IStoreState = {
+const storeState: StoreState = {
   online: false,
   wpi: [],
+  windows: [],
   userInfo: { name: "xion", gerder: "男" }
 };
 const store = createStore({
@@ -30,10 +33,10 @@ const store = createStore({
     }
   },
   modules: {
-    command,
-    style,
-    setting,
-    pages
+    // command,
+    // style,
+    // setting,
+    notes
   }
 });
 export default store;

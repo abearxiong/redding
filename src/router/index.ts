@@ -1,13 +1,21 @@
+/*
+ * @Author: xion
+ * @Date: 2020-08-23 00:18:55
+ * @LastEditors: xion
+ * @LastEditTime: 2020-08-31 23:06:10
+ * @FilePath: \redding\src\router\index.ts
+ * @Description: 真是太开心了
+ */
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import { createWebHashHistory } from "vue-router";
 import Edit from "../views/Edit.vue";
-// import Home from "../views/Home.vue";
+import Home from "../views/Home.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/edit",
     name: "Edit",
-    component: Edit,
+    component: Edit
   },
   {
     path: "/",
@@ -15,7 +23,22 @@ const routes: Array<RouteRecordRaw> = [
     // route level code-splitting
     // this generates a separate chunk (home.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "home" */ "../views/Home.vue"),
+    component: () => import(/* webpackChunkName: "home" */ "../views/Home.vue")
+  },
+  {
+    path: "/pages/index",
+    name: "PagesIndex",
+    component: () => import(/* webpackChunkName: "pagesindex" */ "../views/page/PagesIndex.vue")
+  },
+  {
+    path: "/page/edit/:openid",
+    name: "PageBlock",
+    component: () => import(/* webpackChunkName: "pageblock" */ "../views/page/PageBlock.vue")
+  },
+  {
+    path: "/share/page/:openid",
+    name: "SharePageBlock",
+    component: () => import(/* webpackChunkName: "sharepageblock" */ "../views/share/SharePageBlock.vue")
   },
   {
     path: "/about",
@@ -24,23 +47,23 @@ const routes: Array<RouteRecordRaw> = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
+      import(/* webpackChunkName: "about" */ "../views/About.vue")
   },
   {
     // 会匹配所有路径
-    path: '/*',
+    path: "/*",
     component: Edit
-  },
+  }
 ];
 
-let BASE_URL = process.env.BASE_URL
-if (BASE_URL===""){
+let BASE_URL = process.env.BASE_URL;
+if (BASE_URL === "") {
   BASE_URL = "/redding/";
 }
 const router = createRouter({
   // history: createWebHistory(BASE_URL),
   history: createWebHashHistory(),
-  routes,
+  routes
 });
 // console.log("BASE_URL", BASE_URL, "BASE_URL", process.env.BASE_URL)
 // console.log("env", process.env)

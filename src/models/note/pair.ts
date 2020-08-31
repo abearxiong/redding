@@ -2,11 +2,11 @@
  * @Author: xion
  * @Date: 2020-08-26 12:24:11
  * @LastEditors: xion
- * @LastEditTime: 2020-08-29 05:59:21
- * @FilePath: \reding\src\models\page\pair.ts
+ * @LastEditTime: 2020-08-31 20:33:27
+ * @FilePath: \redding\src\models\note\pair.ts
  * @Description: 真是太开心了
  */
-class Pair implements IPair {
+class Pair {
   name: string;
   value: string;
   constructor(name = "", value = "") {

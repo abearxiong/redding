@@ -16,6 +16,7 @@
     "axios": "^0.20.0",
     "core-js": "^3.6.5",
     "crypto-js": "^4.0.0",
+    "dexie": "^3.0.2",
     "element-ui": "^2.13.2",
     "hotkeys-js": "^3.8.1",
     "marked": "^1.1.1",

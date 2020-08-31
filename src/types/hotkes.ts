@@ -2,16 +2,16 @@
  * @Author: xion
  * @Date: 2020-08-29 06:14:44
  * @LastEditors: xion
- * @LastEditTime: 2020-08-29 09:36:36
- * @FilePath: \reding\src\types\hotkes.ts
+ * @LastEditTime: 2020-08-31 20:25:07
+ * @FilePath: \redding\src\types\hotkes.ts
  * @Description: 真是太开心了
  */
 
 // 热键对应的函数
-interface IHotKeyFun {
+interface HotKeyFun {
   (name: string): void;
 }
-interface IHotkeysOptions {
+interface HotkeysOptions {
   // 按键选项的区域
   scope: string;
   // 按键选项的元素
@@ -23,7 +23,7 @@ interface IHotkeysOptions {
   // 分割key，默认+
   splitKey?: string;
 }
-interface IActionsFun<T> {
+interface ActionsFun<T> {
   // 按键自定义
   custom?: boolean;
   // 监听的函数 ||
@@ -36,7 +36,7 @@ interface IActionsFun<T> {
   // 按键的命名
   name: string;
   // 范围和类别
-  options: IHotkeysOptions;
+  options: HotkeysOptions;
   // 函数的参数
   params: any,
   preventDefault?: boolean,

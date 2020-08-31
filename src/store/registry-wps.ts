@@ -2,8 +2,8 @@
  * @Author: xion
  * @Date: 2020-08-29 08:17:32
  * @LastEditors: xion
- * @LastEditTime: 2020-08-29 17:48:48
- * @FilePath: \reding\src\store\registry-actions.ts
+ * @LastEditTime: 2020-08-31 20:26:53
+ * @FilePath: \redding\src\store\registry-wps.ts
  * @Description: 真是太开心了
  */
 import hotkeys from "hotkeys-js";
@@ -14,9 +14,9 @@ export enum HotkeyStatus {
     CanBind,
     Bind
 }
-export type ActionFun = IActionsFun<HotkeyStatus>
+export type ActionFun = ActionsFun<HotkeyStatus>
 
-class HotkeysOptions implements IHotkeysOptions{
+class HotkeysOptions implements HotkeysOptions{
     scope: string;
     element?: HTMLElement;
     keyup?: boolean;
@@ -36,13 +36,12 @@ class AcionFunction implements ActionFun{
     introduce: string;
     keys: string;
     name: string;
-    options: IHotkeysOptions;
+    options: HotkeysOptions;
     params: any;
     preventDefault?: boolean;
     title: string;
     status: HotkeyStatus;
     constructor({custom, func,introduce,keys,name,options,params,preventDefault,title,status}:ActionFun){
-        // todo 
         this.custom = custom??false;
         this.func = func??"";
         this.introduce = introduce??"介绍";
@@ -51,11 +50,13 @@ class AcionFunction implements ActionFun{
         this.options = options;
         this.title = title;
         this.status = status;
+        this.params = params??"";
+        this.preventDefault = preventDefault??false;
     }
 }
 // 自定义函数举例
 // new Funcition("params","return params");
-const registerActions = (store: Store<any>, actions: IActionsFun<HotkeyStatus>[]) => {
+const registerActions = (store: Store<any>, actions: ActionsFun<HotkeyStatus>[]) => {
     const hotkeysSetting = actions.map((item)=>{
         if(item.status === HotkeyStatus.Bind){
             if(item.custom) {

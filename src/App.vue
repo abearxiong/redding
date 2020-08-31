@@ -2,46 +2,42 @@
  * @Author: xion
  * @Date: 2020-08-23 00:18:55
  * @LastEditors: xion
- * @LastEditTime: 2020-08-30 21:37:27
+ * @LastEditTime: 2020-08-31 23:11:37
  * @FilePath: \redding\src\App.vue
  * @Description: 真是太开心了
 -->
 <template>
-    <router-view />
+    <router-view   v-if="isRouterAlive"/>
     <Drag  v-if="false"/>
-    <todo />
 </template>
 <script>
 import { mapGetters } from "vuex";
-// import hotkeys from "hotkeys-js";
 import Drag from "@/components/Drag.vue";
-import {setup, reactive, toRefs} from 'vue';
-import { defineComponent } from "vue";
-// Vue.component('todo', {
-//   name: "todo",
-//   template: '<li>这是个待办项{{message}}</li>',
-//   data(){
-//     return {
-//       message: "123"
-//     }
-//   }
-// })
-const todo = defineComponent({name:"To",template: '我是人'})
-const w = window;
+import hotkeys from "hotkeys-js";
 
-console.log("drag", Drag)
-console.log(todo)
 export default {
   name: "App",
-  components: { 
-    Drag,todo
-  },
-  setup(props, ctx){
-    console.log(ctx,this)
-    const msg = reactive({v: "msg content"})
+  components: { Drag },
+  data(){
     return {
-      // msg,
-      ...toRefs(msg)
+      isRouterAlive: true
+    }
+  },
+  mounted(){
+    hotkeys("ctrl+r",  this.refresh);
+  },
+  unmounted(){
+    hotkeys.unmounted("ctrl+r", this.refresh);
+  },
+  methods: {
+    reload () {
+        this.isRouterAlive = false
+        this.$nextTick(() => (this.isRouterAlive = true))
+    },
+    refresh(event){
+      this.$root.reload();
+      console.log("刷新");
+      event.preventDefault();
     }
   }
 };
@@ -66,5 +62,16 @@ body,html,#app{
 .x-btn {
   user-select: none;
   cursor: pointer;
+}
+.show-help {
+  position: fixed;
+  right: 5rem;
+  bottom: 5rem;
+  min-width: 15rem;
+}
+@media  (max-width: 424px) {
+  .show-help{
+    position: unset
+  }
 }
 </style>

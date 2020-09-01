@@ -1,19 +1,28 @@
+<!--
+ * @Author: xion
+ * @Date: 2020-08-23 00:18:55
+ * @LastEditors: xion
+ * @LastEditTime: 2020-08-31 12:40:16
+ * @FilePath: \redding\src\views\Home.vue
+ * @Description: 真是太开心了
+-->
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+      功能介绍
   </div>
 </template>
 
-<script lang="ts">
-import { Options, Vue } from "vue-class-component";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
-
-// @Options({
-//   components: {
-//     HelloWorld
-//   }
-// })
-export default class Home extends Vue {}
-console.log("Hello HOME.vue", Options, HelloWorld);
+<script>
+// import PagesIndex from "./Home/PagesIndex";
+// import PageBlock from "./Home/PageBlock";
+export default  {
+  name: "Home",
+}
 </script>
+<style lang="scss" scoped>
+.home{
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+</style>

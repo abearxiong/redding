@@ -1,0 +1,68 @@
+$nums: (
+    4:4px,
+    8:8px,
+    12:12px,
+    16:16px,
+    20:20px,
+    24:24px,
+    32:32px);
+
+/// 单位移除
+/// @param {Number} $number - 需要移除单位的
+/// @return {Number} - 无单位的数字
+@function strip-unit($number) {
+    @if type-of($number) == 'number' and not unitless($number) {
+      @return $number / ($number * 0 + 1);
+    }
+   
+    @return $number;
+}  
+// $number: 50px;
+// $value: strip-unit($number);
+
+/// px 转 em
+/// @param {Number} $target-size px 值
+/// @param {Number} $context 继承的字体大小
+/// @return {Number} 对应以em单位的值
+@function px2em($target-size, $context: $base-font-size) {
+    @if not unitless($target-size) {
+      $target-size: strip-unit($target-size);
+    }
+    @if not unitless($context) {
+      $context: strip-unit($context);
+    }
+    @return ($target-size / $context) * 1em;
+}  
+@each $i, $len in $nums {
+    .padding-#{$i} {
+        padding: $len;
+    }
+    .padding-top-#{$i}{
+        padding-top: $len;
+    }
+    .padding-left-#{$i}{
+        padding-left: $len;
+    }
+    .padding-right-#{$i}{
+        padding-left: $len;
+    }
+    .padding-bottom-#{$i}{
+        padding-left: $len;
+    }
+
+    .margin-#{$i} {
+        margin: $len;
+    }
+    .margin-top-#{$i}{
+        margin-top: $len;
+    }
+    .margin-left-#{$i}{
+        margin-left: $len;
+    }
+    .margin-right-#{$i}{
+        margin-left: $len;
+    }
+    .margin-bottom-#{$i}{
+        margin-left: $len;
+    }
+}

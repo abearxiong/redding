@@ -1,34 +1,63 @@
-import { createStore } from "vuex";
-import { testModules, testModules2 } from "./test";
+/*
+ * @Author: xion
+ * @Date: 2020-08-23 00:18:55
+ * @LastEditors: xion
+ * @LastEditTime: 2020-09-01 15:41:40
+ * @FilePath: \redding\src\store\index.ts
+ * @Description: 真是太开心了
+ */
+import { createStore, ActionContext } from "vuex";
+import { registerModule } from "./register";
+// import { style } from "./style";
+// import { command } from "./command";
+// import { setting } from "./userinfo";
+import { notes } from "./notes";
+import { statistics } from "./statistics";
 
-import { style } from "./style";
-import { command } from "./command";
-import { setting } from "./setting";
-import { pages }  from "./pages";
+import { DefaultValue } from "./default-value";
 
+type StoreContext = ActionContext<StoreState, any>
 
-
+const storeState: StoreState = {
+  reload: ()=>{console.log("未定义reload")},
+  online: false,
+  wpi: [],
+  windows: [],
+  userInfo: { name: "xion", gerder: "男" }
+};
 const store = createStore({
-  state: {store:1,userInfo:{name:"xion",gerder: "男"}},
-  mutations: {},
-  actions: {},
+  state: () => {
+    return storeState;
+  },
   getters: {
-    userInfo(state: any) {
-        return state.userInfo;
+    wpi(state){
+      return state.wpi;
     }
   },
+  mutations: {
+    setReload(state: StoreState, payload:any){
+      state.reload = payload
+    },
+    reload(state: StoreState, payload:any){
+      // console.log("store reload")
+      state.reload()
+    }
+  },
+  actions: {
+    setReload({ commit }: StoreContext, payload) {
+      commit("setReload", payload)
+    },
+    reload({ commit }: StoreContext) {
+      commit("reload")
+    }
+  },
+
   modules: {
-    test: testModules,test2: testModules2,
-    command,
-    style,
-    setting,
-    pages,
+    // command,
+    // style,
+    // setting,
+    statistics,
+    notes
   }
 });
-
-const w: any = window;
-if(window){
-  w.store = store;
-}
-
 export default store;

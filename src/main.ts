@@ -2,7 +2,7 @@
  * @Author: xion
  * @Date: 2020-08-23 00:18:55
  * @LastEditors: xion
- * @LastEditTime: 2020-08-31 22:31:07
+ * @LastEditTime: 2020-09-01 20:33:25
  * @FilePath: \redding\src\main.ts
  * @Description: 真是太开心了
  */
@@ -16,21 +16,11 @@ import store from "./store";
 import "element-ui/lib/theme-chalk/index.css";
 import "@/assets/iconfont.css";
 import "@/assets/app.scss";
-
-import hotkeys from "hotkeys-js";
-hotkeys('*', function(event: any, handler: any){
-  console.log("key=:", hotkeys.getPressedKeyCodes(), event,handler);
-  // event.preventDefault()
-  })
-hotkeys("ctrl+left", (event:any)=>{
-  history.go(-1);
-})
-hotkeys("ctrl+right", ()=>{
-  history.go(1);
-})
-hotkeys.filter=(event)=>{return true;}
+import  hotkeys from 'hotkeys-js';
 
 import { lg } from "@/utils";
+import { importJson } from "@/utils";
+
 if ( window) {
   window.log = lg.log;
   window.clear = lg.clear;
@@ -41,7 +31,9 @@ const app = createApp(App)
   .use(router);
 
 app.mount("#app");
-
+// hotkeys('*', (event, handler)=>{
+//   console.log("keys=", event, handler)
+// });
 const map = (v:any, done:any) => {
   const funcs = {...done(v)};
   for(const i in funcs) {
@@ -61,3 +53,7 @@ if (window) {
   window.app = app;
 }
 
+// const callback = (data:any)=>console.log(data);
+// importJson(callback)
+// console.log(importJson)
+// window.test = importJson;

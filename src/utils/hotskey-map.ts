@@ -1,16 +1,17 @@
+import { HotkeysEvent } from 'hotkeys-js';
 /*
  * @Author: xion
  * @Date: 2020-08-29 15:51:50
  * @LastEditors: xion
- * @LastEditTime: 2020-08-29 17:04:22
- * @FilePath: \reding\src\utils\hotskey-map.ts
+ * @LastEditTime: 2020-09-01 17:15:17
+ * @FilePath: \redding\src\utils\hotskey-map.ts
  * @Description: 真是太开心了
  */
-var isff =
+const isff =
   typeof navigator !== "undefined"
     ? navigator.userAgent.toLowerCase().indexOf("firefox") > 0
     : false; // 绑定事件
-let keyMap:any = {
+const keyMap:any = {
   backspace: 8,
   tab: 9,
   clear: 12,
@@ -103,3 +104,11 @@ const keyboardsNumber = [
     ['1','2','3','enter'],
     ['0','del']
 ]
+
+const preventDefault = (event: any) => {
+    event.preventDefault();
+}
+
+export {
+  preventDefault
+}

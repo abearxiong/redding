@@ -2,7 +2,7 @@
  * @Author: xion
  * @Date: 2020-08-23 00:18:55
  * @LastEditors: xion
- * @LastEditTime: 2020-08-31 23:06:10
+ * @LastEditTime: 2020-09-01 16:47:07
  * @FilePath: \redding\src\router\index.ts
  * @Description: 真是太开心了
  */
@@ -31,14 +31,14 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "pagesindex" */ "../views/page/PagesIndex.vue")
   },
   {
-    path: "/page/edit/:openid",
-    name: "PageBlock",
-    component: () => import(/* webpackChunkName: "pageblock" */ "../views/page/PageBlock.vue")
+    path: "/page/:openid/blocks",
+    name: "PageBlocks",
+    component: () => import(/* webpackChunkName: "pageblock" */ "../views/page/PageBlocks.vue")
   },
   {
     path: "/share/page/:openid",
-    name: "SharePageBlock",
-    component: () => import(/* webpackChunkName: "sharepageblock" */ "../views/share/SharePageBlock.vue")
+    name: "SharePageBlocks",
+    component: () => import(/* webpackChunkName: "sharepageblock" */ "../views/share/SharePageBlocks.vue")
   },
   {
     path: "/about",

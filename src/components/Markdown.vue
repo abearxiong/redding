@@ -1,6 +1,7 @@
 <template>
     <Cover>
       <div class="markdown-edit" :style="{pointerEvents:!isShowRight&&!isShowLeft?'none':'auto'}">
+          <slot></slot>
         <div class="markdown-edit-content">
           <transition name="reslide-fade">
             <div class="content-left" v-show="isShowLeft">
@@ -78,24 +79,31 @@ export default {
         editor.setShowPrintMargin(false); 
         this.editor = editor;
         editor.getSession().on("change", this.onChangeAce);
-        editor.setValue(this.markdown.value);
+        const value = this.markdown.value||"code";
+        editor.setValue(value);
         editor.clearSelection()
         editor.on("blur", this.onFinish);   
 
-        hotkeys("ctrl+e,ctrl+l", "markdown",this.onShowLeft);
-        hotkeys("ctrl+r", "markdown", this.onShowRight);
+        hotkeys("ctrl+q,ctrl+l", "markdown",this.onShowLeft);
+        hotkeys("ctrl+e", "markdown", this.onShowRight);
         hotkeys("ctrl+enter,ctrl+s","markdown", this.onOk);
-        
+        hotkeys("esc", "markdown", this.closeLeft)
+        hotkeys("ctrl+h","markdown",this.showHelp);
         hotkeys.setScope("markdown");
+        hotkeys.filter = ()=>true;
     },
     unmounted(){
-        hotkeys.unbind("ctrl+e,ctrl+l","markdown",this.onShowLeft);
-        hotkeys.unbind("ctrl+r", "markdown", this.onShowRight);
+        hotkeys.unbind("ctrl+q,ctrl+l","markdown",this.onShowLeft);
+        hotkeys.unbind("ctrl+e", "markdown", this.onShowRight);
         hotkeys.unbind("ctrl+enter,ctrl+s", "markdown", this.onOk);
+        hotkeys.unbind("esc", "markdown", this.closeLeft)
+        hotkeys.unbind("ctrl+h","markdown",this.showHelp);
+        hotkeys.setScope("all")
     },
     methods: {
         onShowLeft(e) {
             this.isShowLeft = !this.isShowLeft;
+            console.log("key", e)
             e.preventDefault()
         },
         onShowRight(e) {
@@ -127,9 +135,29 @@ export default {
             this.isEditLeft = false;
         },
         onShowMarkdown() {
-            const newContent = {...this.markdown};
+            const newContent = this.markdown;
             newContent.value = this.text;
             this.$emit("update", newContent);
+        },
+        preventDefault(event, handler) {
+            event.preventDefault();
+        },
+        showHelp(event, handler){
+            this.$emit("markdown-help");
+            event.preventDefault();
+        },
+        closeLeft(e){
+            if(!this.isShowLeft&&!this.isShowRight){
+                this.onShowMarkdown()
+            }else if( this.isShowLeft && this.isShowRight){
+                this.isShowLeft = !this.isShowLeft;
+            }else if( this.isShowLeft && !this.isShowRight){
+                this.isShowLeft = !this.isShowLeft;
+            }else if( !this.isShowLeft && this.isShowRight){
+                this.isShowLeft = !this.isShowLeft;
+            }
+            
+            e.preventDefault();
         }
     },
 }
@@ -175,27 +203,31 @@ export default {
         transform: translate(0, 0);
         opacity: 1;
     }
-    .slide-fade-leave-to, .reslide-fade-leave-to {
+    .slide-fade-leave-to {
         transform: translate(400px, 0);
         opacity: 0;
     }
-    .reslide-fade-enter-active {
-        transform: translate(-400px, 0);
-        opacity: 1;
-        transition: all 2.8s ease;
-    }
-    .reslide-fade-enter-to {
-        transform: translate(0, 0);
-        opacity: 1;
-    }
-    .reslide-fade-leave-active {
-        transition: all 1.8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-    }
 
+   .reslide-fade-leave-active {
+        opacity: 1;
+        transform: translate(400, 0);
+        transition: all 3.8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    }
     .reslide-fade-leave-to {
-        transform: translate(-400px, 0);
+        transform: translate(0, 0);
         opacity: 0;
     }
+    .reslide-fade-enter-active {
+        transform: translate(-400px, -100);
+        opacity: 0.5;
+        transition: all 4.8s ease;
+        z-index: 10;
+    }
+    .reslide-fade-enter-to {
+        transform: translate(100, 0);
+        opacity: 1;
+    }
+ 
     @media (max-width: 1024px) {
         .content-right {
             display: none;

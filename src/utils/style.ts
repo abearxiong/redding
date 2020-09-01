@@ -2,8 +2,8 @@
  * @Author: xion
  * @Date: 2020-08-24 03:26:34
  * @LastEditors: xion
- * @LastEditTime: 2020-08-29 17:34:29
- * @FilePath: \reding\src\utils\style.ts
+ * @LastEditTime: 2020-09-01 17:30:59
+ * @FilePath: \redding\src\utils\style.ts
  * @Description: 真是太开心了
  */
 
@@ -34,7 +34,7 @@ const getStyle = (element: HTMLElement) => {
   return getAttributes(element, "style");
 };
 
-const style = (json: any) => {
+const formatStyle = (json: any) => {
   const res: any = {};
   for (const i in json) {
     if (typeof json[i] === "number" || !isNaN(json[i])) {
@@ -45,12 +45,13 @@ const style = (json: any) => {
   }
   return res;
 };
-
+const getFormatStyle = formatStyle;
 export {
   getAttributes,
   getStyleInline,
   getStyleOutline,
   getStyleInlineAll,
   getStyle,
-  style
+  getFormatStyle,
+  formatStyle,
 };

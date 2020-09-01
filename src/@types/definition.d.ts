@@ -2,7 +2,7 @@
  * @Author: xion
  * @Date: 2020-08-28 08:10:04
  * @LastEditors: xion
- * @LastEditTime: 2020-08-31 16:39:36
+ * @LastEditTime: 2020-09-01 20:34:06
  * @FilePath: \redding\src\@types\definition.d.ts
  * @Description: 真是太开心了
  */
@@ -18,9 +18,13 @@ interface Window {
     store?: any,
     smap?: any,
     Vue?: any,
-    app?: any
+    app?: any,
+    test?: any
 }
-
+interface Document {
+    webkitExitFullscreen: any;
+    mozCancelFullScreen: any;
+}
 interface Console {
     profile(label?: string): void;
     profileEnd(label?: string): void;

@@ -2,7 +2,7 @@
  * @Author: xion
  * @Date: 2020-08-31 10:22:19
  * @LastEditors: xion
- * @LastEditTime: 2020-08-31 23:11:51
+ * @LastEditTime: 2020-09-01 20:38:40
  * @FilePath: \redding\src\views\Page\PagesIndex.vue
  * @Description: 真是太开心了
 -->
@@ -12,7 +12,7 @@
       <input class="p el-input"/>
   </div>
   <div class="pages-index">
-       <WindowHelp v-if="pages.length==0||isNeedHelp"><pre>帮助内容</pre></WindowHelp>
+       <WindowHelp v-if="pages.length==0||isNeedHelp" :helpContent="DocPageIndexHelper"><pre>页面管理介绍</pre></WindowHelp>
       <div class="pages-item el-card" v-for="item in pages" :key="item.openid" :style="item.setting.pageStyle" @click="toPage(item.openid)">
           <div class="pages-item__title paddging-top-12 min-height-38">{{item.title}}</div>
           <div class="pages-item__tags" v-if="item.tags.length>0">{{item.tags}}</div>
@@ -25,8 +25,10 @@
 
 <script>
 import hotkeys from "hotkeys-js";
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import WindowHelp from "@/components/WindowHelp";
+import { DocPageIndexHelper } from "@/store/doc-key";
+import { preventDefault, importJson as importData } from "@/utils";
 export default {
     name: "PagesIndex",
     components: { WindowHelp },
@@ -34,45 +36,72 @@ export default {
         return {
             pages: [],
             showSearch: false,
-            isNeedHelp: true
+            isNeedHelp: true,
+            DocPageIndexHelper
         }
     },
     mounted(){
         this.pages = [{title:"`13",setting:{},openid:"1",tags:[]}]
         hotkeys.setScope("pageIndex")
         hotkeys("ctrl+f","pageIndex",this.search)
-        hotkeys("n","pageIndex",this.addNew);
-        
+        hotkeys("n", "pageIndex",this.addNew);
+        hotkeys("*", "pageIndex", this.hooks)
+        hotkeys("ctrl+h", "pageIndex", this.showHelp);
+        hotkeys("ctrl+o", "pageIndex", this.importJson);
+        hotkeys("ctrl+w,ctrl+e, ctrl+r,ctrl+t,ctrl+o,ctrl+p", preventDefault);
+        hotkeys("ctrl+a,ctrl+s,ctrl+d, ctrl+f, ctrl+g,ctrl+h,ctrl+j,ctrl+k", preventDefault);
+        hotkeys("ctrl+z,ctrl+n", preventDefault);
+        // ctrl+w, ctrl+t，ctrl+n不能拦截
         this.init();
     },
     unmounted(){
         hotkeys.unbind("ctrl+f","pageIndex",this.search)
         hotkeys.unbind("n","pageIndex",this.addNew);
-        // hotkeys.unbind("ctrl+r","pageIndex", this.refresh);
-
+        hotkeys.unbind("*", "pageIndex", this.hooks)
+        hotkeys.unbind("ctrl+h", "pageIndex", this.showHelp);
+        hotkeys.unbind("ctrl+o", "pageIndex", this.importJson);
         hotkeys.setScope("all")
     },
     methods: {
         ...mapGetters(["getPages"]),
+        ...mapActions(["addPage", "hook"]),
         init(){
             this.pages = this.getPages();
-            console.log("this.pages")
+            // console.log("this.pages")
         },
         search(event) {
-             console.log("search")
+            //  console.log("search")
             this.showSearch = !this.showSearch;
             event.preventDefault();
         },
         toPage(openid){
-            this.$router.push("/page/edit/"+openid)
+            this.$router.push("/page/"+openid+"/blocks")
         },
         addNew(event){
-            console.log("addNew")
-             event.preventDefault();
+            // console.log("addNew")
+            this.addPage();
+            event.preventDefault();
         },
         refresh(event){
-             console.log("refresh");
+            //  console.log("refresh");
              this.$root.reload();
+             event.preventDefault();
+        },
+        hooks(event, handler){
+            this.hook({event, handler});
+        },
+        showHelp(event, handler){
+            this.isNeedHelp = !this.isNeedHelp;
+            event.preventDefault();
+        },
+        preventDefault(event, handler) {
+            event.preventDefault();
+        },
+        getValue( data ){
+            console.log("callback", data)
+        },
+        importJson(event) {
+            importData(this.getValue);
              event.preventDefault();
         }
     }

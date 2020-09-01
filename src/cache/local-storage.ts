@@ -2,7 +2,7 @@
  * @Author: xion
  * @Date: 2020-08-31 20:04:34
  * @LastEditors: xion
- * @LastEditTime: 2020-08-31 21:59:52
+ * @LastEditTime: 2020-09-01 19:55:48
  * @FilePath: \redding\src\cache\local-storage.ts
  * @Description: 真是太开心了
  */
@@ -15,12 +15,22 @@ export const setls = ( key:MyStorage|string, v="")=>{
         return localStorage.setItem(name, value+"");
     }
 }
-export const getls = (name: string|MyStorage) =>{
+export const getls = (name: string|MyStorage, defaultValue="") =>{
     if(name instanceof String){
-        return localStorage.getItem(name as string);
+        console.log("get string", name)
+        return localStorage.getItem(name as string)??defaultValue;
     }
     else{
-        return localStorage.getItem((name as MyStorage).name);
+        const sto: MyStorage = name as MyStorage;
+        const v = localStorage.getItem(sto.name)
+        if(v) return v;
+        //设置默认值
+        if(defaultValue!==""){
+            setls(name, defaultValue);
+            return defaultValue;
+        }
+        setls(sto);
+        return sto.value;
     }
 }
 export const removels = (name: string|MyStorage) => {

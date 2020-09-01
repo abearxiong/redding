@@ -2,7 +2,7 @@
  * @Author: xion
  * @Date: 2020-08-23 00:18:55
  * @LastEditors: xion
- * @LastEditTime: 2020-09-01 18:03:01
+ * @LastEditTime: 2020-09-01 21:48:31
  * @FilePath: \redding\src\App.vue
  * @Description: 真是太开心了
 -->
@@ -14,7 +14,7 @@
 import { mapGetters, mapActions } from "vuex";
 import Drag from "@/components/Drag.vue";
 import hotkeys from "hotkeys-js";
-
+import { preventDefault } from "@/utils";
 export default {
   name: "App",
   components: { Drag },
@@ -56,6 +56,12 @@ export default {
     this.init();
     window.reload = this.reload;
     this.setReload(this.reload);
+
+    hotkeys("ctrl+1,ctrl+2,ctrl+3,ctrl+4,ctrl+5,ctrl+6,ctrl+7,ctrl+8,ctrl+9,ctrl+0,ctrl+-,ctrl+=", preventDefault)
+    hotkeys("ctrl+tab,ctrl+w,ctrl+e, ctrl+r,ctrl+t,ctrl+o,ctrl+p", preventDefault);
+    hotkeys("ctrl+a,ctrl+s,ctrl+d, ctrl+f, ctrl+g,ctrl+h,ctrl+j,ctrl+k,ctrl+l", preventDefault);
+    hotkeys("ctrl+z,ctrl+n", preventDefault);
+    // ctrl+w, ctrl+t，ctrl+n不能拦截
   },
   unmounted(){
     hotkeys.unbind("ctrl+r", this.refresh);

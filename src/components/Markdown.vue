@@ -5,7 +5,7 @@
         <div class="markdown-edit-content">
           <transition name="reslide-fade">
             <div class="content-left" v-show="isShowLeft">
-                <div id="editor" @change="onChangeAce" @click="onChangeLeft(true)"></div>
+                <div id="editor"   @change="onChangeAce" @click="onChangeLeft(true)"></div>
             </div>
           </transition>
            <transition name="slide-fade" >
@@ -14,6 +14,7 @@
                         class="markdown-preview" 
                         ref="markdown-preview"  
                         v-html="html"
+                        tabindex="1"
                         :contenteditable="true"
                         @input="onChangeContent"
                         @click="onChangeLeft(false)"
@@ -57,8 +58,7 @@ export default {
     },
     mounted() {
         const element = this.$refs.rightElement;
-        const text = this.$refs.textarea
-        const editor = ace.edit("editor",{
+        const editor = ace.edit("editor", {
             // maxLines: 20, // 最大行数，超过会自动出现滚动条
             minLines: 10, // 最小行数，还未到最大行数时，编辑器会自动伸缩大小
             fontSize: 12, // 编辑器内字体大小
@@ -83,7 +83,7 @@ export default {
         editor.setValue(value);
         editor.clearSelection()
         editor.on("blur", this.onFinish);   
-
+        editor.focus()
         hotkeys("ctrl+q,ctrl+l", "markdown",this.onShowLeft);
         hotkeys("ctrl+e", "markdown", this.onShowRight);
         hotkeys("ctrl+enter,ctrl+s","markdown", this.onOk);
@@ -91,6 +91,9 @@ export default {
         hotkeys("ctrl+h","markdown",this.showHelp);
         hotkeys.setScope("markdown");
         hotkeys.filter = ()=>true;
+        // document.getElementsByTagName("textarea")[0].focus();
+        // document.getElementsByClassName("markdown-preview")[0].focus()
+        // console.log("focuse", document.activeElement)
     },
     unmounted(){
         hotkeys.unbind("ctrl+q,ctrl+l","markdown",this.onShowLeft);
@@ -120,13 +123,12 @@ export default {
                 this.html = parseText(this.text );
             }
         },
-        onChangeContent(e) {
-            if( !this.isEditLeft ){           
-                const html = e.target.innerHTML;
-                const text = parseHtml(html);
-                this.editor.setValue(text);
-                this.editor.clearSelection();
-            }
+        onChangeContent(e) {          
+            const html = e.target.innerHTML;
+            const text = parseHtml(html);
+            this.text = text;
+            this.editor.setValue(text);
+            this.editor.clearSelection();
         },
         onChangeLeft(val) {
             this.isEditLeft = val;
@@ -139,10 +141,8 @@ export default {
             newContent.value = this.text;
             this.$emit("update", newContent);
         },
-        preventDefault(event, handler) {
-            event.preventDefault();
-        },
         showHelp(event, handler){
+            // console.log("event markdown", event, handler)
             this.$emit("markdown-help");
             event.preventDefault();
         },
@@ -156,7 +156,7 @@ export default {
             }else if( !this.isShowLeft && this.isShowRight){
                 this.isShowLeft = !this.isShowLeft;
             }
-            
+ 
             e.preventDefault();
         }
     },
@@ -230,9 +230,6 @@ export default {
  
     @media (max-width: 1024px) {
         .content-right {
-            display: none;
-        }
-        .content-middle {
             display: none;
         }
     }

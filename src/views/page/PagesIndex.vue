@@ -2,7 +2,7 @@
  * @Author: xion
  * @Date: 2020-08-31 10:22:19
  * @LastEditors: xion
- * @LastEditTime: 2020-09-01 20:38:40
+ * @LastEditTime: 2020-09-01 21:45:43
  * @FilePath: \redding\src\views\Page\PagesIndex.vue
  * @Description: 真是太开心了
 -->
@@ -48,10 +48,6 @@ export default {
         hotkeys("*", "pageIndex", this.hooks)
         hotkeys("ctrl+h", "pageIndex", this.showHelp);
         hotkeys("ctrl+o", "pageIndex", this.importJson);
-        hotkeys("ctrl+w,ctrl+e, ctrl+r,ctrl+t,ctrl+o,ctrl+p", preventDefault);
-        hotkeys("ctrl+a,ctrl+s,ctrl+d, ctrl+f, ctrl+g,ctrl+h,ctrl+j,ctrl+k", preventDefault);
-        hotkeys("ctrl+z,ctrl+n", preventDefault);
-        // ctrl+w, ctrl+t，ctrl+n不能拦截
         this.init();
     },
     unmounted(){
@@ -60,7 +56,6 @@ export default {
         hotkeys.unbind("*", "pageIndex", this.hooks)
         hotkeys.unbind("ctrl+h", "pageIndex", this.showHelp);
         hotkeys.unbind("ctrl+o", "pageIndex", this.importJson);
-        hotkeys.setScope("all")
     },
     methods: {
         ...mapGetters(["getPages"]),

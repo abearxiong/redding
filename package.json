@@ -10,11 +10,13 @@
     "postbuild": "mv dist docs"
   },
   "dependencies": {
+    "@cloudbase/js-sdk": "^1.2.2",
     "@types/crypto-js": "^3.1.47",
     "@types/marked": "^1.1.0",
     "ace-builds": "^1.4.12",
     "axios": "^0.20.0",
     "core-js": "^3.6.5",
+    "cos-js-sdk-v5": "^0.5.27",
     "crypto-js": "^4.0.0",
     "dexie": "^3.0.2",
     "element-ui": "^2.13.2",

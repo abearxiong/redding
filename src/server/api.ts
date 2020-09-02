@@ -27,3 +27,8 @@ const post = async (url: string, data: any, requestWay = 1) => {
 };
 
 export { get, post };
+
+export {
+  fg, fp,
+  g,p
+}

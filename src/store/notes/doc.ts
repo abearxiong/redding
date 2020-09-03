@@ -2,7 +2,7 @@
  * @Author: xion
  * @Date: 2020-09-01 14:56:35
  * @LastEditors: xion
- * @LastEditTime: 2020-09-03 12:40:20
+ * @LastEditTime: 2020-09-03 18:06:54
  * @FilePath: \redding\src\store\notes\doc.ts
  * @Description: 真是太开心了
  */
@@ -54,9 +54,9 @@ export const DocPageIndexKey:{[key: string]: MyStorage} = {
             }
         }
     },
-    PAGE_INDEX_KEY_N: {
-        name: "PAGE_INDEX_KEY_N",
-        value: "n",
+    PAGE_INDEX_CTRL_A: {
+        name: "PAGE_INDEX_CTRL_A",
+        value: "ctrl+a",
         introduce: (lang) => {
             switch(lang){
                 default: return "新建页面"
@@ -128,6 +128,7 @@ export const DocPageIndexHelper: DocHelp = {
     introduce: (lang="zh")=>{
         let intros = ["PAGE_INDEX_CTRL_F", "PAGE_INDEX_UP", "PAGE_INDEX_RIGHT", "PAGE_INDEX_DOWN", "PAGE_INDEX_LEFT"]
         intros = intros.concat(["PAGE_INDEX_CTRL_LEFT", "PAGE_INDEX_CTRL_RIGHT"]);
+        intros = intros.concat(["RAGE_INDEX_CTRL_A"])
         return intros.map(item=>{
             return {
                 name: item,
@@ -142,9 +143,9 @@ export const DocPageIndexHelper: DocHelp = {
 }
 // PageBlocks
 export const DocPageBlocksKey:{[key: string]: MyStorage} = {
-    PAGE_BLOCKS_KEY_N: {
-        name: "PAGE_BLOCKS_KEY_N",
-        value: "n",
+    PAGE_BLOCKS_CTRL_A: {
+        name: "PAGE_BLOCKS_CTRL_A",
+        value: "ctrl+a",
         introduce: (lang) => {
             switch(lang){
                 default: return "新建块"
@@ -214,7 +215,7 @@ export const DocPageBlocksHelper: DocHelp = {
         return "PageBlocks"
     },
     introduce: (lang="zh")=>{
-        let intros = ["PAGE_BLOCKS_KEY_N", "PAGE_BLOCKS_UP", "PAGE_BLOCKS_RIGHT", "PAGE_BLOCKS_DOWN", "PAGE_BLOCKS_LEFT"]
+        let intros = ["PAGE_BLOCKS_CTRL_A", "PAGE_BLOCKS_UP", "PAGE_BLOCKS_RIGHT", "PAGE_BLOCKS_DOWN", "PAGE_BLOCKS_LEFT"]
         intros = intros.concat(["PAGE_BLOCKS_CTRL_LEFT", "PAGE_BLOCKS_CTRL_RIGHT"]);
         return intros.map(item=>{
             return {

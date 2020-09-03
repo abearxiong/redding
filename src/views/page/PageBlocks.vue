@@ -2,7 +2,7 @@
  * @Author: xion
  * @Date: 2020-08-31 10:22:33
  * @LastEditors: xion
- * @LastEditTime: 2020-09-03 08:51:34
+ * @LastEditTime: 2020-09-03 18:02:51
  * @FilePath: \redding\src\views\page\PageBlocks.vue
  * @Description: 真是太开心了
 -->
@@ -61,12 +61,12 @@ export default {
     mounted(){
         // console.log(this.$route.params.openid)
         this.init();
-        hotkeys("n","pageBlocks",this.addNew);
+        hotkeys("ctrl+a","pageBlocks",this.addNew);
         hotkeys("ctrl+h","pageBlocks",this.showHelp);
         hotkeys.setScope("pageBlocks")
     },
     unmounted() {
-        hotkeys.unbind("n","pageBlocks",this.addNew);
+        hotkeys.unbind("ctrl+a","pageBlocks",this.addNew);
         hotkeys.unbind("ctrl+h","pageBlocks",this.showHelp);
         hotkeys.setScope("all")
     },

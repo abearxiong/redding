@@ -2,7 +2,7 @@
  * @Author: xion
  * @Date: 2020-08-31 10:22:19
  * @LastEditors: xion
- * @LastEditTime: 2020-09-03 11:42:04
+ * @LastEditTime: 2020-09-03 18:02:43
  * @FilePath: \redding\src\views\page\PagesIndex.vue
  * @Description: 真是太开心了
 -->
@@ -44,7 +44,7 @@ export default {
         this.pages = [{title:"`13",setting:{},openid:"1",tags:[]}]
         hotkeys.setScope("pageIndex")
         hotkeys("ctrl+f","pageIndex",this.search)
-        hotkeys("n", "pageIndex",this.addNew);
+        hotkeys("ctrl+a", "pageIndex",this.addNew);
         hotkeys("*", "pageIndex", this.hooks)
         hotkeys("ctrl+h", "pageIndex", this.showHelp);
         hotkeys("ctrl+o", "pageIndex", this.importJson);
@@ -53,7 +53,7 @@ export default {
     },
     unmounted(){
         hotkeys.unbind("ctrl+f","pageIndex",this.search)
-        hotkeys.unbind("n","pageIndex",this.addNew);
+        hotkeys.unbind("ctrl+a","pageIndex",this.addNew);
         hotkeys.unbind("*", "pageIndex", this.hooks)
         hotkeys.unbind("ctrl+h", "pageIndex", this.showHelp);
         hotkeys.unbind("ctrl+o", "pageIndex", this.importJson);
@@ -119,7 +119,7 @@ export default {
 .pages-index-wrapper {
     width: 100%;
     height: 100%;
-    background-color: grey;
+    background-color: #5f76b7d9;
 }
 .pages-search {
     margin-top: 1rem;

@@ -1,3 +1,7 @@
+## 05 moment日期格式化
+
+
+```js
 import moment from "moment";
 
 // moment().format();                                // "2014-09-08T08:02:17-05:00" (ISO 8601, no fractional seconds)
@@ -56,3 +60,4 @@ export {
   moment,
   logTime,
 };
+```

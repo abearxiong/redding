@@ -2,7 +2,7 @@
  * @Author: xion
  * @Date: 2020-09-01 14:56:35
  * @LastEditors: xion
- * @LastEditTime: 2020-09-01 18:45:32
+ * @LastEditTime: 2020-09-03 12:40:20
  * @FilePath: \redding\src\store\notes\doc.ts
  * @Description: 真是太开心了
  */
@@ -284,6 +284,15 @@ export const DocMarkdownKey:{[key: string]: MyStorage} = {
             }
         }
     },
+    MARKDOWN_CTRL_S: {
+        name: "MARKDOWN_CTRL_S",
+        value: "ctrl+s",
+        introduce: ( lang ) =>{
+            switch( lang ) {
+                default: return "保存退出"
+            }
+        }
+    },
     MARKDOWN_ESC: {
         name: "MARKDOWN_CTRL_ESC",
         value: "esc",
@@ -305,6 +314,7 @@ export const DocMarkdownHelper: DocHelp = {
     introduce: (lang="zh")=>{
         let intros = ["MARKDOWN_UP", "MARKDOWN_RIGHT", "MARKDOWN_DOWN", "MARKDOWN_LEFT"]
         intros = intros.concat(["MARKDOWN_CTRL_Q", "MARKDOWN_CTRL_E", "MARKDOWN_ESC"]);
+        intros = intros.concat(["MARKDOWN_CTRL_S" ]);
         return intros.map(item=>{
             return {
                 name: item,

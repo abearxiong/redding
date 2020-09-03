@@ -2,12 +2,12 @@
  * @Author: xion
  * @Date: 2020-08-31 10:22:33
  * @LastEditors: xion
- * @LastEditTime: 2020-09-01 22:24:19
+ * @LastEditTime: 2020-09-03 08:51:34
  * @FilePath: \redding\src\views\page\PageBlocks.vue
  * @Description: 真是太开心了
 -->
 <template>
-    <div class="page-blocks card padding-12">
+    <div class="page-blocks padding-12">
         <div class="page-block-title no-outline" contenteditable="true" @input="changeTitle" @blur="updatePageTitleByBlur">
             {{page.title}}
         </div>
@@ -172,5 +172,10 @@ export default {
     margin: auto;
     display: flex;
     flex-direction: column;
+    border-radius: 4px;
+    border: 1px solid #ebeef5;
+    box-sizing: border-box;
+    background-color: #fff;
+    transition: 0.3s;
 }
 </style>

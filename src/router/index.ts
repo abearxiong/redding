@@ -2,7 +2,7 @@
  * @Author: xion
  * @Date: 2020-08-23 00:18:55
  * @LastEditors: xion
- * @LastEditTime: 2020-09-01 16:47:07
+ * @LastEditTime: 2020-09-02 15:49:56
  * @FilePath: \redding\src\router\index.ts
  * @Description: 真是太开心了
  */
@@ -18,7 +18,7 @@ const routes: Array<RouteRecordRaw> = [
     component: Edit
   },
   {
-    path: "/",
+    path: "/home",
     name: "Home",
     // route level code-splitting
     // this generates a separate chunk (home.[hash].js) for this route
@@ -26,7 +26,8 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "home" */ "../views/Home.vue")
   },
   {
-    path: "/pages/index",
+    path: "/",
+    // path: "/pages/index",
     name: "PagesIndex",
     component: () => import(/* webpackChunkName: "pagesindex" */ "../views/page/PagesIndex.vue")
   },
@@ -48,6 +49,11 @@ const routes: Array<RouteRecordRaw> = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue")
+  },
+  {
+    path: "/picture",
+    name: "Picture",
+    component: () => import(/* webpackChunkName: "picture" */ "../views/file/Picture.vue")
   },
   {
     // 会匹配所有路径

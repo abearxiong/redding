@@ -2,13 +2,15 @@
  * @Author: xion
  * @Date: 2020-08-31 18:29:38
  * @LastEditors: xion
- * @LastEditTime: 2020-09-01 19:57:37
+ * @LastEditTime: 2020-09-03 12:19:10
  * @FilePath: \redding\src\cache\note.ts
  * @Description: 真是太开心了
  */
 import Dexie from "dexie";
-import { Note } from "@/models";
+import { Note,Page, Block } from "@/models";
 import { exampleBlocks,examplePages } from '@/models/note/note';
+import { eblocks, epages } from "@/expample";
+
 import {DefaultValue as Default} from "@/store/default-value";
 import { setls, getls, clearls, removels } from "./local-storage";
 
@@ -31,7 +33,8 @@ const DB_IS_INIT = localStorage.getItem(Default.DB_IS_INIT.name)
 // debugger;
 if(!DB_IS_INIT){
     db.transaction("rw", db.notes, async()=>{
-        const adds = [...exampleBlocks,...examplePages];
+        // const adds = [...exampleBlocks,...examplePages];
+        const adds = [...epages.map(item=>new Page(item)), ...eblocks.map((item:any)=>new Block(item))];
         // for(const i in adds){
         //     db.notes.add(adds[i]);
         // }

@@ -84,6 +84,7 @@ export default {
         editor.clearSelection()
         editor.on("blur", this.onFinish);   
         editor.focus()
+        
         hotkeys("ctrl+q,ctrl+l", "markdown",this.onShowLeft);
         hotkeys("ctrl+e", "markdown", this.onShowRight);
         hotkeys("ctrl+enter,ctrl+s","markdown", this.onOk);

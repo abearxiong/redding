@@ -1,5 +1,12 @@
+/*
+ * @Author: xion
+ * @Date: 2020-09-02 14:29:37
+ * @LastEditors: xion
+ * @LastEditTime: 2020-09-03 08:43:19
+ * @FilePath: \redding\src\store\userinfo\types.ts
+ * @Description: 真是太开心了
+ */
 import { ActionContext } from "vuex";
-import { StoreState } from "../types";
 
 interface ShowMsg {
     on: boolean,

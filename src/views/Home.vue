@@ -2,7 +2,7 @@
  * @Author: xion
  * @Date: 2020-08-23 00:18:55
  * @LastEditors: xion
- * @LastEditTime: 2020-08-31 12:40:16
+ * @LastEditTime: 2020-09-02 14:40:00
  * @FilePath: \redding\src\views\Home.vue
  * @Description: 真是太开心了
 -->
@@ -17,6 +17,9 @@
 // import PageBlock from "./Home/PageBlock";
 export default  {
   name: "Home",
+  mounted(){
+    // 检测是否是第一次，和是否有默认页面；
+  }
 }
 </script>
 <style lang="scss" scoped>

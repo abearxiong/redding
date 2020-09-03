@@ -3,7 +3,7 @@
  * @Author: xion
  * @Date: 2020-08-30 23:16:56
  * @LastEditors: xion
- * @LastEditTime: 2020-09-01 17:07:56
+ * @LastEditTime: 2020-09-03 12:36:37
  * @FilePath: \redding\src\store\notes\index.ts
  * @Description: 真是太开心了
  */
@@ -172,7 +172,7 @@ const notes = {
                 }
                 commit("updateNotes", comments.map(item=>new Comment(item)));      
             }else{
-                const blocks = await db.notes.where({category: NoteCategory.Block}).toArray();
+                const blocks =await (await db.notes.where({category: NoteCategory.Block}).sortBy("created"));
                 commit("updateNotes", blocks);
                 const comments = await db.notes.where({category: NoteCategory.Comment}).toArray();
                 commit("updateNotes", comments);

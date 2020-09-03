@@ -1,7 +1,19 @@
+import moment from "moment";
+
+// moment().format();                                // "2014-09-08T08:02:17-05:00" (ISO 8601, no fractional seconds)
+// moment().format("dddd, MMMM Do YYYY, h:mm:ss a"); // "Sunday, February 14th 2010, 3:25:50 pm"
+// moment().format("ddd, hA");                       // "Sun, 3PM"
+// moment().format("[Today is] dddd");               // "Today is Sunday"
+// moment('gibberish').format('YYYY MM DD');         //
+//  moment().format("Y/M/D hh:mm:ss")
+// "2020/9/3 09:53:01"
+const getMoFormat = (date: Date, fmt ='YY/M/D hh:mm:ss') => {
+  return moment(date).format(fmt);
+}
 const getTimestamp = () => {
   return new Date().getTime();
 };
-const logTime = (v:any="hh") => {
+const logTime = (v:any = "hh") => {
   console.log(v, new Date().toLocaleString())
 }
 /**
@@ -36,4 +48,11 @@ const getDateFormat = (date: Date , fmt = "yy/mm/dd HH:MM:SS") => {
   return fmt;
 };
 const df = getDateFormat;
-export { getTimestamp, getDateFormat, df };
+export { 
+  getTimestamp,
+  getDateFormat,
+  getMoFormat,
+  df,
+  moment,
+  logTime,
+};

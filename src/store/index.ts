@@ -2,7 +2,7 @@
  * @Author: xion
  * @Date: 2020-08-23 00:18:55
  * @LastEditors: xion
- * @LastEditTime: 2020-09-01 15:41:40
+ * @LastEditTime: 2020-09-02 17:25:30
  * @FilePath: \redding\src\store\index.ts
  * @Description: 真是太开心了
  */
@@ -15,6 +15,7 @@ import { notes } from "./notes";
 import { statistics } from "./statistics";
 
 import { DefaultValue } from "./default-value";
+// import { cos } from "./cos";
 
 type StoreContext = ActionContext<StoreState, any>
 

@@ -2,8 +2,8 @@
  * @Author: xion
  * @Date: 2020-08-31 10:22:19
  * @LastEditors: xion
- * @LastEditTime: 2020-09-01 21:45:43
- * @FilePath: \redding\src\views\Page\PagesIndex.vue
+ * @LastEditTime: 2020-09-03 11:42:04
+ * @FilePath: \redding\src\views\page\PagesIndex.vue
  * @Description: 真是太开心了
 -->
 <template>
@@ -28,7 +28,7 @@ import hotkeys from "hotkeys-js";
 import { mapGetters, mapActions } from "vuex";
 import WindowHelp from "@/components/WindowHelp";
 import { DocPageIndexHelper } from "@/store/doc-key";
-import { preventDefault, importJson as importData } from "@/utils";
+import { preventDefault, importJson as importData,exportJson as emportData } from "@/utils";
 export default {
     name: "PagesIndex",
     components: { WindowHelp },
@@ -48,6 +48,7 @@ export default {
         hotkeys("*", "pageIndex", this.hooks)
         hotkeys("ctrl+h", "pageIndex", this.showHelp);
         hotkeys("ctrl+o", "pageIndex", this.importJson);
+        hotkeys("ctrl+i", "pageIndex", this.exportJson);
         this.init();
     },
     unmounted(){
@@ -56,6 +57,7 @@ export default {
         hotkeys.unbind("*", "pageIndex", this.hooks)
         hotkeys.unbind("ctrl+h", "pageIndex", this.showHelp);
         hotkeys.unbind("ctrl+o", "pageIndex", this.importJson);
+        hotkeys.unbind("ctrl+i", "pageIndex", this.exportJson);
     },
     methods: {
         ...mapGetters(["getPages"]),
@@ -98,6 +100,16 @@ export default {
         importJson(event) {
             importData(this.getValue);
              event.preventDefault();
+        },
+        exportJson(event) {
+            const pages =  window.store.getters.notes.pages;
+            const blocks = window.store.getters.notes.blocks
+            // console.log("export pages",pages)
+            // debugger;
+            // console.log("export blocks",blocks)
+            emportData("pages.txt", JSON.stringify(pages));
+            emportData("blocks.txt", JSON.stringify(blocks));
+            event.preventDefault();
         }
     }
 }   

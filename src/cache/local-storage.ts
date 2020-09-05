@@ -2,7 +2,7 @@
  * @Author: xion
  * @Date: 2020-08-31 20:04:34
  * @LastEditors: xion
- * @LastEditTime: 2020-09-01 19:55:48
+ * @LastEditTime: 2020-09-03 21:48:47
  * @FilePath: \redding\src\cache\local-storage.ts
  * @Description: 真是太开心了
  */
@@ -16,6 +16,7 @@ export const setls = ( key:MyStorage|string, v="")=>{
     }
 }
 export const getls = (name: string|MyStorage, defaultValue="") =>{
+    // debugger
     if(name instanceof String){
         console.log("get string", name)
         return localStorage.getItem(name as string)??defaultValue;

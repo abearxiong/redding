@@ -2,7 +2,7 @@
  * @Author: xion
  * @Date: 2020-08-23 00:18:55
  * @LastEditors: xion
- * @LastEditTime: 2020-09-01 21:48:31
+ * @LastEditTime: 2020-09-04 15:53:37
  * @FilePath: \redding\src\App.vue
  * @Description: 真是太开心了
 -->
@@ -105,6 +105,7 @@ body,html,#app{
   -moz-osx-font-smoothing: grayscale;
   // text-align: center;
   color: #2c3e50;
+  position: absolute;
 }
 .is-ok {
   border: 1px dotted  red;

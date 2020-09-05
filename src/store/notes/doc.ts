@@ -2,7 +2,7 @@
  * @Author: xion
  * @Date: 2020-09-01 14:56:35
  * @LastEditors: xion
- * @LastEditTime: 2020-09-03 18:06:54
+ * @LastEditTime: 2020-09-03 21:49:37
  * @FilePath: \redding\src\store\notes\doc.ts
  * @Description: 真是太开心了
  */
@@ -128,7 +128,7 @@ export const DocPageIndexHelper: DocHelp = {
     introduce: (lang="zh")=>{
         let intros = ["PAGE_INDEX_CTRL_F", "PAGE_INDEX_UP", "PAGE_INDEX_RIGHT", "PAGE_INDEX_DOWN", "PAGE_INDEX_LEFT"]
         intros = intros.concat(["PAGE_INDEX_CTRL_LEFT", "PAGE_INDEX_CTRL_RIGHT"]);
-        intros = intros.concat(["RAGE_INDEX_CTRL_A"])
+        intros = intros.concat(["PAGE_INDEX_CTRL_A"])
         return intros.map(item=>{
             return {
                 name: item,

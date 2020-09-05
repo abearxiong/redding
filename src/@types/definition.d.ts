@@ -2,7 +2,7 @@
  * @Author: xion
  * @Date: 2020-08-28 08:10:04
  * @LastEditors: xion
- * @LastEditTime: 2020-09-01 20:34:06
+ * @LastEditTime: 2020-09-05 06:55:51
  * @FilePath: \redding\src\@types\definition.d.ts
  * @Description: 真是太开心了
  */
@@ -19,7 +19,11 @@ interface Window {
     smap?: any,
     Vue?: any,
     app?: any,
-    test?: any
+    test?: any,
+    cloudbase?: any,
+    cloudApp?: any,
+    cloudAuth?: any,
+    cloudData?: any,
 }
 interface Document {
     webkitExitFullscreen: any;

@@ -2,7 +2,7 @@
  * @Author: xion
  * @Date: 2020-08-23 00:18:55
  * @LastEditors: xion
- * @LastEditTime: 2020-09-02 15:49:56
+ * @LastEditTime: 2020-09-03 21:55:07
  * @FilePath: \redding\src\router\index.ts
  * @Description: 真是太开心了
  */
@@ -10,6 +10,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import { createWebHashHistory } from "vue-router";
 import Edit from "../views/Edit.vue";
 import Home from "../views/Home.vue";
+import { UserRoute } from "./user";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -55,6 +56,7 @@ const routes: Array<RouteRecordRaw> = [
     name: "Picture",
     component: () => import(/* webpackChunkName: "picture" */ "../views/file/Picture.vue")
   },
+  ...UserRoute,
   {
     // 会匹配所有路径
     path: "/*",

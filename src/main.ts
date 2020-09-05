@@ -2,7 +2,7 @@
  * @Author: xion
  * @Date: 2020-08-23 00:18:55
  * @LastEditors: xion
- * @LastEditTime: 2020-09-02 22:42:38
+ * @LastEditTime: 2020-09-05 08:02:35
  * @FilePath: \redding\src\main.ts
  * @Description: 真是太开心了
  */
@@ -21,15 +21,6 @@ import  hotkeys from 'hotkeys-js';
 import { lg } from "@/utils";
 import { importJson } from "@/utils";
 
-import tcb from "@cloudbase/js-sdk";
-
-const tcbApp = tcb.init({
-  env: "abear2-198d4c"
-});
-const auth:any = tcbApp.auth({persistence: "local"});
-
-// console.log(auth.currentUser)
-// auth.signOut()
 
 if ( window) {
   window.log = lg.log;

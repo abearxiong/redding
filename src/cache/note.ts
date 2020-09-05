@@ -2,7 +2,7 @@
  * @Author: xion
  * @Date: 2020-08-31 18:29:38
  * @LastEditors: xion
- * @LastEditTime: 2020-09-03 12:19:10
+ * @LastEditTime: 2020-09-03 21:45:09
  * @FilePath: \redding\src\cache\note.ts
  * @Description: 真是太开心了
  */
@@ -30,11 +30,10 @@ class NoteDB extends Dexie {
 
 const db = new NoteDB();
 const DB_IS_INIT = localStorage.getItem(Default.DB_IS_INIT.name)
-// debugger;
 if(!DB_IS_INIT){
     db.transaction("rw", db.notes, async()=>{
         // const adds = [...exampleBlocks,...examplePages];
-        const adds = [...epages.map(item=>new Page(item)), ...eblocks.map((item:any)=>new Block(item))];
+        const adds = [...epages.map((item: any)=>new Page(item)), ...eblocks.map((item:any)=>new Block(item))];
         // for(const i in adds){
         //     db.notes.add(adds[i]);
         // }

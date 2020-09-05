@@ -2,7 +2,7 @@
  * @Author: xion
  * @Date: 2020-08-23 00:18:55
  * @LastEditors: xion
- * @LastEditTime: 2020-09-02 17:25:30
+ * @LastEditTime: 2020-09-05 08:06:33
  * @FilePath: \redding\src\store\index.ts
  * @Description: 真是太开心了
  */
@@ -10,7 +10,7 @@ import { createStore, ActionContext } from "vuex";
 import { registerModule } from "./register";
 // import { style } from "./style";
 // import { command } from "./command";
-// import { setting } from "./userinfo";
+import { userinfo } from "./userinfo";
 import { notes } from "./notes";
 import { statistics } from "./statistics";
 
@@ -56,7 +56,7 @@ const store = createStore({
   modules: {
     // command,
     // style,
-    // setting,
+    userinfo,
     statistics,
     notes
   }

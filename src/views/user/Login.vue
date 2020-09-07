@@ -2,7 +2,7 @@
  * @Author: xion
  * @Date: 2020-09-03 21:50:29
  * @LastEditors: xion
- * @LastEditTime: 2020-09-05 08:20:20
+ * @LastEditTime: 2020-09-05 20:35:13
  * @FilePath: \redding\src\views\user\Login.vue
  * @Description: 真是太开心了
 -->
@@ -30,10 +30,10 @@
       </div>
       <div class="login-button-group">
         <div class="login-button-success el-button" @click="onLoginOrRegister">{{!wantToLogin?"注册":"登录"}}</div>
-        <div class="login-button-success el-button" @click="anonymousLogin">匿名登录</div>
       </div>
+      <div class="hr" style="border-color:#EBEEF5"/>
       <div class="login-other-way">
-
+          <div class="login-button-success el-button" @click="anonymousLogin">匿名登录</div>
       </div>
     </form>
   </div>
@@ -114,6 +114,9 @@ export default {
       padding: 0.4rem 0.8rem 0.4rem 0.8rem;
       text-align: center;
     }
+  }
+  .login-other-way {
+    margin: 1rem 0rem 0rem 1rem;
   }
 }
 .login {

@@ -2,7 +2,7 @@
  * @Author: xion
  * @Date: 2020-09-02 14:29:37
  * @LastEditors: xion
- * @LastEditTime: 2020-09-05 08:12:53
+ * @LastEditTime: 2020-09-05 22:13:29
  * @FilePath: \redding\src\store\userinfo\index.ts
  * @Description: 真是太开心了
  */
@@ -15,9 +15,9 @@
 
 import cloudbase from "@cloudbase/js-sdk";
 import { app, auth, database } from "@cloudbase/js-sdk";
-import { ActionContext } from 'vuex';
+import { ActionContext } from "vuex";
 
-type SetContext = ActionContext<SettingState, StoreState>
+type SetContext = ActionContext<SettingState, StoreState>;
 
 const cloudApp = cloudbase.init({
   env: "abear2-198d4c"
@@ -25,38 +25,39 @@ const cloudApp = cloudbase.init({
 type CloudApp = app.App;
 type CloudAuth = auth.App;
 type CloudDB = database.App;
+type UserInfo = auth.IUserInfo;
 type UserLogin = {
   username: string,
   password: string
-}
-const cloudAuth = cloudApp.auth({persistence: "local"});
+};
+const cloudAuth = cloudApp.auth({ persistence: "local" });
 const cloudData = cloudApp.database();
-type Cloud = { cloudbase: any, cloudApp: CloudApp, cloudAuth: CloudAuth, cloudData: CloudDB }
-if( window ) {
+
+if (window) {
   window.cloudbase = cloudbase;
   window.cloudApp = cloudApp;
   window.cloudAuth = cloudAuth;
   window.cloudData = cloudData;
 }
-const cloud =  {
+const cloud = {
   cloudbase: cloudbase,
   cloudApp,
   cloudAuth,
-  cloudData,
-}
+  cloudData
+};
 
 interface SettingState {
-  isShow: any,
-  showMsg: ShowMsg,
-  cloud: Cloud,
-  currentPageOpenid: string,
-  currentPageBlockOpenid: string,
-  currentBaseUrl: string,
-  currentSyncWeb: SyncWeb, 
+  isShow: any;
+  currentUser: UserInfo;
+  showMsg: ShowMsg;
+  currentPageOpenid: string;
+  currentPageBlockOpenid: string;
+  currentBaseUrl: string;
+  currentSyncWeb: SyncWeb;
 }
 
 const setingState: SettingState = {
-  cloud,
+  currentUser: {},
   isShow: {},
   currentPageOpenid: "",
   currentPageBlockOpenid: "",
@@ -65,9 +66,9 @@ const setingState: SettingState = {
   showMsg: {
     on: false,
     title: "",
-    body: "",
+    body: ""
   }
-}
+};
 const userinfo = {
   state: setingState,
   getters: {
@@ -77,7 +78,7 @@ const userinfo = {
     currentSetting: (state: any) => (setting: string) => state[setting] ?? "",
     setting: (state: any) => state,
     showMsg: (state: any) => state.showMsg,
-    isLogin: (state: SettingState) => state.cloud.cloudAuth.getLoginState()
+    isLogin: () => cloud.cloudAuth.getLoginState()
   },
   mutations: {
     setSetting(state: any, payload: any) {
@@ -87,7 +88,7 @@ const userinfo = {
       }
     },
     setShowMsg: (state: SettingState, payload: ShowMsg) => {
-      state.showMsg == payload??{on:false}
+      state.showMsg == payload ?? { on: false };
     }
   },
   actions: {
@@ -95,24 +96,44 @@ const userinfo = {
       context.commit("setSetting", payload);
     },
     setShowMsg({ commit }: SetContext, payload: ShowMsg) {
-      commit("setShowMsg", payload)
+      commit("setShowMsg", payload);
     },
-    async login( { state }: SetContext, payload: UserLogin) {
+    async login({ state }: SetContext, payload: UserLogin) {
       //eslint-disable-next-line
       const emailRegex = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-      const isEmail = emailRegex.test(payload.username)
-      if( isEmail ){
-        const loginState = await state.cloud.cloudAuth.signInWithEmailAndPassword(payload.username, payload.password);
+      const isEmail = emailRegex.test(payload.username);
+      if (isEmail) {
+        const loginStatus = await cloudAuth.signInWithEmailAndPassword(
+          payload.username,
+          payload.password
+        );
       } else {
-        const loginState = await state.cloud.cloudAuth.signInWithUsernameAndPassword(payload.username, payload.password);
+        const loginStatus = await cloudAuth.signInWithUsernameAndPassword(
+          payload.username,
+          payload.password
+        );
       }
-      // to 可以loginState操作
+      // to 可以loginStatus操作
     },
-    async register( { state }: SetContext, payload: UserLogin) {
-      const isSeedEmail = state.cloud.cloudAuth.signUpWithEmailAndPassword(payload.username, payload.password); 
+    async register({ state }: SetContext, payload: UserLogin) {
+      const sendStatus = cloudAuth.signUpWithEmailAndPassword(
+        payload.username,
+        payload.password
+      );
     },
-    async anonymousLogin( { state }: SetContext) {
-      const loginState = await state.cloud.cloudAuth.anonymousAuthProvider().signIn()
+    async sendPasswordResetEmail({ state }: SetContext, payload: UserLogin) {
+      const sendStatus = await cloudAuth.sendPasswordResetEmail(payload.username);
+    },
+    async anonymousLogin({ state }: SetContext) {
+      const loginStatus = await cloud.cloudAuth
+        .anonymousAuthProvider()
+        .signIn();
+    },
+    async signOut({ state }: SetContext) {
+      const loginStatus = await cloud.cloudAuth.signOut();
+    },
+    async userUpdate({ state }: SetContext, payload: UserInfo) {
+      const updateStatus = await cloud.cloudAuth.currentUser?.update(payload);
     }
   }
 };

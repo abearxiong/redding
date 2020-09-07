@@ -8,14 +8,24 @@
 -->
 <template>
   <div class="user-profile">
-      <div class="nav"></div>
-      <div class="user-content"></div>
+      <div class="user-nav"></div>
+      <div class="user-content">
+        
+      </div>
   </div>
 </template>
 
 <script>
 export default {
-    name: "UserProfile"
+    name: "UserProfile",
+    data() {
+      return {
+
+      }
+    },
+    mounted() {
+      console.log("")
+    }
 }
 </script>
 

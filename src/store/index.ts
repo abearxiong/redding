@@ -2,7 +2,7 @@
  * @Author: xion
  * @Date: 2020-08-23 00:18:55
  * @LastEditors: xion
- * @LastEditTime: 2020-09-05 08:06:33
+ * @LastEditTime: 2020-09-05 22:05:13
  * @FilePath: \redding\src\store\index.ts
  * @Description: 真是太开心了
  */
@@ -23,8 +23,7 @@ const storeState: StoreState = {
   reload: ()=>{console.log("未定义reload")},
   online: false,
   wpi: [],
-  windows: [],
-  userInfo: { name: "xion", gerder: "男" }
+  windows: []
 };
 const store = createStore({
   state: () => {
